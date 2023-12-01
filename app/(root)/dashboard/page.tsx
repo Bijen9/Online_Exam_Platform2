@@ -1,12 +1,7 @@
 import React from "react";
-import { UserButton } from "@clerk/nextjs";
+
 const askQuestion = () => {
-  return (
-    <div>
-      ask Questions in this page.
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  );
+  return <div>This is the dashboard for any user who is signed in.</div>;
 };
 
 export default askQuestion;
