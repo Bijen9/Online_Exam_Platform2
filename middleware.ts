@@ -3,12 +3,7 @@ import { redirect } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 
 export default authMiddleware({
-  publicRoutes: [
-    "/",
-    "/sign-in/[[...index]]",
-    "/sign-up/[[...index]]",
-    "/api/webhook",
-  ],
+  publicRoutes: ["/", "/sign-in/[[...index]]", "/sign-up/[[...index]]"],
   ignoredRoutes: ["/api/webhook"],
   // clerk settings
   afterAuth(auth, req, res) {
