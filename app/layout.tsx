@@ -5,11 +5,7 @@ import React from "react";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeProvider";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-weight",
-});
+// whsec_CcmuhVeCqmqfGMd1SLTODLg7kyp2cxCw
 
 const spaceGrotesk = Inter({
   subsets: ["latin"],
