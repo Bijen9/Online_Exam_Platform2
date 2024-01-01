@@ -8,7 +8,7 @@ export default authMiddleware({
     "/sign-up/[[...index]]",
     "/api/webhook",
   ],
-  ignoredRoutes: ["/api/webhook", "/"],
+  // ignoredRoutes: ["/api/webhook", "/"],
   // clerk settings
   afterAuth(auth, req, res) {
     // handle users who aren't authenticated
