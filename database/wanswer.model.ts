@@ -16,6 +16,6 @@ const WanswerSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Wanswer = models.Wanswer || model(" Wanswer ", WanswerSchema);
+const Wanswer = models.Wanswer || model<IWanswer>(" Wanswer ", WanswerSchema);
 
 export default Wanswer;

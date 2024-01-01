@@ -1,6 +1,7 @@
 import { Schema, models, model, Document } from "mongoose";
 
 export interface IMCQ extends Document {
+  testId: Schema.Types.ObjectId;
   question: string;
   options: string[];
   answer: number;
@@ -10,6 +11,7 @@ export interface IMCQ extends Document {
 }
 
 const MCQSchema = new Schema({
+  testId: { type: Schema.Types.ObjectId, ref: "Test" },
   question: { type: String, required: true },
   options: [{ type: String, required: true }],
   answer: { type: Number, required: true },
@@ -18,6 +20,6 @@ const MCQSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const MCQ = models.MCQ || model(" MCQ ", MCQSchema);
+const MCQ = models.MCQ || model<IMCQ>(" MCQ ", MCQSchema);
 
 export default MCQ;
