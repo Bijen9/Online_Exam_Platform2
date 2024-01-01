@@ -3,7 +3,9 @@ import { Schema, models, model, Document } from "mongoose";
 export interface IUser extends Document {
   clerkId: string;
   email: string;
-  fullName: string;
+  name: string;
+  username: string;
+  image: string;
   TestCreated: Schema.Types.ObjectId[];
   TestIssued: Schema.Types.ObjectId[];
   Organization: Schema.Types.ObjectId;
@@ -12,9 +14,11 @@ export interface IUser extends Document {
 }
 
 const UserSchema = new Schema({
-  clerkId: { type: String, required: true },
-  email: { type: String, required: true },
-  fullName: { type: String },
+  clerkId: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  name: { type: String },
+  username: { type: String },
+  image: { type: String },
   TestCreated: [{ type: Schema.Types.ObjectId, ref: "Test" }],
   TestIssued: [{ type: Schema.Types.ObjectId, ref: "Test" }],
   Organization: { type: Schema.Types.ObjectId, ref: "Organization" },

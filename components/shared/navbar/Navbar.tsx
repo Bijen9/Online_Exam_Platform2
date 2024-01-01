@@ -1,23 +1,12 @@
-import { SignedIn, UserButton, auth } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Theme from "./Theme";
 import GlobalSearch from "../search/GlobalSearch";
 import MobileNav from "./MobileNav";
-import getUserById from "@/lib/actions/user.action";
-import { get } from "http";
 
 const Navbar = () => {
-  const { userId } = auth();
-  if (userId) {
-    console.log(auth());
-    getuser(userId);
-    async function getuser(userId: string) {
-      const user = await getUserById({ userId });
-      console.log(user);
-    }
-  }
   return (
     <nav
       className="flex-between background-light900_dark200
