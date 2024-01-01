@@ -54,7 +54,7 @@ export async function POST(req: Request) {
   //   const { id } = evt.data;
 
   const eventType = evt.type;
-
+  //handle event for user creating
   //handle event for user creating
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, username, first_name, last_name } =
