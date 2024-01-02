@@ -18,10 +18,10 @@ export default authMiddleware({
       console.log(auth.userId, auth.isPublicRoute);
       return redirectToSignIn({ returnBackUrl: req.url });
     }
-    if (auth.userId && req.nextUrl.pathname == "/sign-in") {
-      const bufferuser = new URL("/bufferuser", req.url);
-      return NextResponse.redirect(bufferuser.href);
-    }
+    // if (auth.userId && req.nextUrl.pathname == "/sign-in") {
+    //   const bufferuser = new URL("/bufferuser", req.url);
+    //   return NextResponse.redirect(bufferuser.href);
+    // }
   },
 });
 
