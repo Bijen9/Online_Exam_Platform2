@@ -3,7 +3,7 @@ import { redirect } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 
 export default authMiddleware({
-  publicRoutes: ["/", "/sign-in/[[...index]]"],
+  publicRoutes: ["/", "/sign-in/[[...index]]" , "/teacher"],
   // clerk settings
   afterAuth(auth, req, res) {
     // handle users who aren't authenticated

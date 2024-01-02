@@ -13,22 +13,22 @@ export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/assets/icons/users.svg",
     route: "/community",
-    label: "Community",
+    label: "Result",
   },
   {
     imgURL: "/assets/icons/star.svg",
     route: "/collection",
-    label: "Collections",
-  },
-  {
-    imgURL: "/assets/icons/suitcase.svg",
-    route: "/jobs",
-    label: "Find Jobs",
+    label: "Tests Around Me",
   },
   {
     imgURL: "/assets/icons/tag.svg",
     route: "/tags",
-    label: "Tags",
+    label: "Topic Tags",
+  },
+  {
+    imgURL: "/assets/icons/suitcase.svg",
+    route: "/jobs",
+    label: "Friends",
   },
   {
     imgURL: "/assets/icons/user.svg",

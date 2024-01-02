@@ -1,26 +1,36 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
+import QuestionCard from "@/components/cards/QuestionCard";
 
 const questions = [
   {
-    _id:1,
+    _id: '1',
     title: 'MATH 207 unit test 1',
     tags: [{ _id: 1, name: 'python'}, { _id: 2, name: 'sql'}],
-    author: 'Shyam Sundar Saha',
+    author:{
+      _id: '1',
+      name: 'Shyam Sundar Saha',
+      picture: 'ShyamSundar.jpg',
+    } ,
     views: 57,
-    questions: 8,
-    createdAt: '2023-12-31T12:00.000Z'
+    questions: [],
+    createdAt: new Date('2023-12-31T12:00:00.000Z'),
   },
   {
-    _id:2,
+    _id: '2',
     title: 'DATABASE MCQs Test 2',
     tags: [{ _id: 1, name: 'python'}, { _id: 2, name: 'sql'}],
-    author: 'Santosh Khanal',
-    views: 37,
-    questions: 6,
-    createdAt: '2023-12-31T12:00.000Z'
+    author:{
+      _id: '2',
+      name: 'Santosh Khanal',
+      picture: 'SantoshKhanal.jpg',
+    } ,
+    views: 57,
+    questions: [],
+    createdAt: new Date('2023-12-31T12:00:00.000Z'),
   },
+ 
 
 ]
 
@@ -50,9 +60,21 @@ export default function Home() {
        </div>
 
        <div className="mt-10 flex w-full flex-col gap-6">
+          
           {questions.map((question) => (
-                'QuestionCard'
-          ))}
+                <QuestionCard
+                  key={question._id}
+                  _id={question._id}
+                  title={question.title}
+                  tags={question.tags}
+                  author={question.author}
+                  questions={question.questions}
+                  createdAt={question.createdAt}
+
+                />
+          ))
+          }
+
        </div>
 
 
