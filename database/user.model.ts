@@ -8,6 +8,7 @@ export interface IUser extends Document {
   image: string;
   TestCreated: Schema.Types.ObjectId[];
   TestIssued: Schema.Types.ObjectId[];
+  TestAttempted: Schema.Types.ObjectId[];
   Organization: Schema.Types.ObjectId;
   Role: Schema.Types.ObjectId;
   createdAt: Date;
@@ -21,6 +22,7 @@ const UserSchema = new Schema({
   image: { type: String },
   TestCreated: [{ type: Schema.Types.ObjectId, ref: "Test" }],
   TestIssued: [{ type: Schema.Types.ObjectId, ref: "Test" }],
+  TestAttempted: [{ type: Schema.Types.ObjectId, ref: "Test" }],
   Organization: { type: Schema.Types.ObjectId, ref: "Organization" },
   Role: { type: Schema.Types.ObjectId, ref: "Role" },
   createdAt: { type: Date, default: Date.now },

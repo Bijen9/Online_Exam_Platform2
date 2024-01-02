@@ -150,14 +150,48 @@ export async function attendWritten(params: any) {
 export async function markWritten(params: any) {
   try {
     connectTodatabase();
-    const { writtenId, userId, decision } = params;
+    const { writtenId, userId, studentId, decision } = params;
+
     const written = await Written.findById(writtenId);
+    const testId = written.testId;
+    const requestedBy = await User.findById(userId);
+    const authorised = requestedBy.TestIssued.find((test: ITest) => {
+      return test.toString() === testId;
+    });
+    if (!authorised) {
+      return { status: "not authorized" };
+    }
     // if if the answer is correct
     if (decision === true) {
       // add the user to the correct students
-      written.CorrectStudents.push(userId);
+      written.CorrectStudents.push(studentId);
       written.save();
     }
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+// give comment in written test
+export async function commentWritten(params: any) {
+  try {
+    connectTodatabase();
+    const { writtenId, userId, comment, studentId } = params;
+    const written = await Written.findById(writtenId);
+    const testId = written.testId;
+    const requestedBy = await User.findById(userId);
+    const authorised = requestedBy.TestIssued.find((test: ITest) => {
+      return test.toString() === testId;
+    });
+    if (!authorised) {
+      return { status: "not authorized" };
+    }
+    const wanswer = await Wanswer.findOneAndUpdate(
+      { StudentId: studentId, QuestionId: writtenId },
+      { comment }
+    );
+    return wanswer;
   } catch (error) {
     console.log("error occured");
     console.log(error);
@@ -191,6 +225,23 @@ export async function getQuestions(params: any) {
       element.CorrectStudents = null;
     });
     return { mcq, trueFalse, written };
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+export async function publishResult(params: any) {
+  try {
+    connectTodatabase();
+    const { testId, userId } = params;
+    const test = await Test.findById(testId);
+    if (test.CreatedBy === userId) {
+      test.published = true;
+      test.save();
+      return { status: "success" };
+    }
+    return { status: "not authorized" };
   } catch (error) {
     console.log("error occured");
     console.log(error);

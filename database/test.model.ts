@@ -7,17 +7,19 @@ export interface ITest extends Document {
   startTime: Date;
   endTime: Date;
   status: boolean;
+  published: boolean;
   completedBy: Schema.Types.ObjectId[];
   createdAt: Date;
 }
 
 const TestSchema = new Schema({
-  Name: { type: String, required: true },
-  Description: { type: String, required: true },
+  name: { type: String, required: true },
+  description: { type: String, required: true },
   CreatedBy: { type: Schema.Types.ObjectId, ref: "User" },
-  StartTime: { type: Date, required: true },
-  EndTime: { type: Date },
-  Status: { type: Boolean, default: true },
+  startTime: { type: Date, required: true },
+  endTime: { type: Date },
+  status: { type: Boolean, default: true },
+  published: { type: Boolean, default: false },
   CompletedBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
   createdAt: { type: Date, default: Date.now },
 });

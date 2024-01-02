@@ -24,7 +24,7 @@ export async function getUserById(params: any) {
 }
 
 // live search user by name
-export async function searchUser(params: any) {
+export async function searchUserByName(params: any) {
   try {
     connectTodatabase();
     const { userName } = params;
