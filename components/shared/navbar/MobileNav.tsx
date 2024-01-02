@@ -10,14 +10,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { SignedOut } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { sidebarLinks } from "@/constants";
+import { sidebarLinksStudent } from "@/constants";
 import { usePathname } from "next/navigation";
 
 const NavContent = () => {
   const pathname = usePathname();
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
-      {sidebarLinks.map((item) => {
+      {sidebarLinksStudent.map((item) => {
         const isActive =
           (pathname.includes(item.route) && item.route.length > 1) ||
           pathname === item.route;

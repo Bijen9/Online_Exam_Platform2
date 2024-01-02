@@ -1,11 +1,12 @@
 "use client";
-import { sidebarLinks  } from "@/constants";
-import { SignedOut } from "@clerk/nextjs";
+import { sidebarLinksStudent, sidebarLinksTeacher } from "@/constants";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { Button } from "../ui/button";
+import { SidebarLink } from "@/types";
 
 const LeftSidebar = () => {
   const pathname = usePathname();
@@ -16,7 +17,7 @@ const LeftSidebar = () => {
      border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]"
     >
       <div className="flex flex-1 flex-col gap-6">
-        {sidebarLinks.map((item) => {
+        {sidebarLinksTeacher.map((item: SidebarLink) => {
           const isActive =
             (pathname.includes(item.route) && item.route.length > 1) ||
             pathname === item.route;
@@ -79,6 +80,23 @@ const LeftSidebar = () => {
           </Link>
         </div>
       </SignedOut>
+
+      <SignedIn>
+        <div className="flex flex-col gap-3">
+          <Link href="/teacher/create-test">
+            <Button className="small-medium light-border-2 btn-tertiary  primary-gradient  text-light-900 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+              <Image
+                src="/assets/icons/edit.svg"
+                width={20}
+                height={20}
+                alt="login"
+                className="invert-colors lg:hidden"
+              />
+              <span className=" max-lg:hidden base-bold">Create a Test</span>
+            </Button>
+          </Link>
+        </div>
+      </SignedIn>
     </section>
   );
 };

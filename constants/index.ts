@@ -4,7 +4,7 @@ export const themes = [
   { value: "dark", label: "Dark", icon: "/assets/icons/moon.svg" },
   { value: "system", label: "System", icon: "/assets/icons/computer.svg" },
 ];
-export const sidebarLinks: SidebarLink[] = [
+export const sidebarLinksStudent: SidebarLink[] = [
   {
     imgURL: "/assets/icons/home.svg",
     route: "/",
@@ -39,6 +39,25 @@ export const sidebarLinks: SidebarLink[] = [
     imgURL: "/assets/icons/question.svg",
     route: "/ask-question",
     label: "Ask a question",
+  },
+];
+
+export const sidebarLinksTeacher: SidebarLink[] = [
+  {
+    imgURL: "/assets/icons/home.svg",
+    route: "/teacher",
+    label: "Home",
+  },
+
+  {
+    imgURL: "/assets/icons/star.svg",
+    route: "/teacher/results",
+    label: "Results",
+  },
+  {
+    imgURL: "/assets/icons/tag.svg",
+    route: "/teacher/mark-test",
+    label: "Mark Tests",
   },
 ];
 
