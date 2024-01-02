@@ -3,11 +3,12 @@
 import User from "@/database/user.model";
 import { connectTodatabase } from "../mongoose";
 import { revalidatePath } from "next/cache";
+import { connect } from "http2";
 
 export async function getUserById(params: any) {
   try {
     connectTodatabase();
-    const { userId, email } = params;
+    const { userId } = params;
     console.log("THis is from backend", userId);
     const user = await User.findOne({ clerkId: userId });
     if (user) {
@@ -15,6 +16,54 @@ export async function getUserById(params: any) {
       return user;
     }
     console.log("user not found");
+    return null;
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+// live search user by name
+export async function searchUser(params: any) {
+  try {
+    connectTodatabase();
+    const { userName } = params;
+    const user = await User.find({
+      name: { $regex: userName, $options: "i" },
+    });
+    return user;
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+export async function getUserByEmail(params: any) {
+  try {
+    connectTodatabase();
+    const { email } = params;
+    const user = await User.find({ email: email });
+    if (user) {
+      return user;
+    }
+    return null;
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+export async function getUsersByOrganization(params: any) {
+  try {
+    connectTodatabase();
+    const { organizationId, roleId } = params;
+    const users = await User.find({
+      Role: roleId,
+      Organization: organizationId,
+    });
+    if (users) {
+      return users;
+    }
     return null;
   } catch (error) {
     console.log("error occured");

@@ -3,7 +3,7 @@ import { Schema, models, model, Document } from "mongoose";
 export interface ITrue_False extends Document {
   testId: Schema.Types.ObjectId;
   question: string;
-  answer: string;
+  answer: boolean;
   marks: number;
   CorrectStudents: Schema.Types.ObjectId[];
   createdAt: Date;
@@ -12,7 +12,7 @@ export interface ITrue_False extends Document {
 const True_FalseSchema = new Schema({
   testId: { type: Schema.Types.ObjectId, ref: "Test" },
   question: { type: String, required: true },
-  answer: { type: String, required: true },
+  answer: { type: Boolean, default: false },
   marks: { type: Number, required: true },
   CorrectStudents: [{ type: Schema.Types.ObjectId, ref: "User" }],
   createdAt: { type: Date, default: Date.now },
