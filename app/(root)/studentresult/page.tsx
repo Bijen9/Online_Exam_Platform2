@@ -2,6 +2,7 @@ import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import QuestionCard from "@/components/cards/QuestionCard";
+import React from "react";
 
 const questions = [
   {
@@ -38,12 +39,11 @@ const questions = [
   },
 ];
 
-export default function Home() {
+const teacherPage = () => {
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">
-        <h1 className="h1-bold text-dark100_light900">All Tests</h1>
-
+        <h1 className="h1-bold text-dark100_light900">Results</h1>
       </div>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:item-center">
@@ -51,7 +51,7 @@ export default function Home() {
           route="/"
           iconPosition="left"
           imgSrc="/assests/icons/search.svg"
-          placeholder="Search for tests"
+          placeholder="Search for results"
           otherClasses="flex-1"
         />
       </div>
@@ -74,4 +74,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default teacherPage;

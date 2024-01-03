@@ -33,7 +33,7 @@ const RigthSidebar = () => {
     <div className="mt-7 flex w-full flex-col gap-[30px]">
       {hotQuestions.map((question) => (
         <Link
-          href={`/questions/${question._id}`}
+          href={`https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Create-Git-Repo-Repository-Init-New-Clone-Example-Tutorial`}
           key={question._id}
           className="flex cursor-pointer items-center justify-between gap-7"
         >
