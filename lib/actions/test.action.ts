@@ -92,6 +92,22 @@ export async function getIssuedTest(params: any) {
   }
 }
 
+export async function getTestById(params: any) {
+  try {
+    connectTodatabase();
+    const { userId, testId } = params;
+    const test = await Test.findById(testId);
+
+    if (JSON.stringify(test.CreatedBy) === JSON.stringify(userId)) {
+      return test;
+    }
+    return "not your test to edit";
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
 export async function getCreatedTest(params: any) {
   try {
     connectTodatabase();

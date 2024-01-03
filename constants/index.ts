@@ -59,6 +59,11 @@ export const sidebarLinksTeacher: SidebarLink[] = [
     route: "/teacher/mark-test",
     label: "Mark Tests",
   },
+  {
+    imgURL: "/assets/icons/tag.svg",
+    route: "/teacher/edit-test",
+    label: "Edit Tests",
+  },
 ];
 
 export const BADGE_CRITERIA = {

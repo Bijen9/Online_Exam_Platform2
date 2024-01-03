@@ -14,7 +14,8 @@ export default async function EditTest() {
 
   return (
     <>
-      <div className="mt-10 flex w-full flex-col gap-6">
+      <div className="mt-10 flex w-full flex-col justify-between gap-6 sm:flex-column sm:item-center">
+        <h1 className="h1-bold text-dark100_light900">Edit Test</h1>
         {tests!.map((test: any) => (
           <Link href={`/teacher/edit-test/${test._id}`}>
             <TestCard
