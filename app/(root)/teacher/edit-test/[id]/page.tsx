@@ -42,8 +42,8 @@ const TestEditpage = async ({ params, searchParams }) => {
             className="flex justify-between gap-2"
           >
             <Badge
-              className="subtle-medium background-light800_dark300 
-        text-light400_light500 rounded-md border-none px-4 py-2 uppercase"
+              className="h4-bold  background-light800_dark300 
+        text-dark400_light500 rounded-md border-none px-4 py-2 uppercase focus:bg-slate-100 dark:focus:bg-light-300"
             >
               MCQ
             </Badge>
@@ -53,8 +53,9 @@ const TestEditpage = async ({ params, searchParams }) => {
             className="flex justify-between gap-2"
           >
             <Badge
-              className="subtle-medium background-light800_dark300 
-            text-light400_light500 rounded-md border-none px-4 py-2 uppercase"
+             
+              className="h4-bold  background-light800_dark300 
+              text-dark400_light500 rounded-md border-none px-4 py-2 uppercase "
             >
               True False
             </Badge>
@@ -64,8 +65,8 @@ const TestEditpage = async ({ params, searchParams }) => {
             className="flex justify-between gap-2"
           >
             <Badge
-              className="subtle-medium background-light800_dark300 
-            text-light400_light500 rounded-md border-none px-4 py-2 uppercase"
+              className="h4-bold background-light800_dark300 
+              text-dark400_light500 rounded-md border-none px-4 py-2 uppercase"
             >
               Word Question
             </Badge>

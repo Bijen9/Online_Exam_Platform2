@@ -59,7 +59,7 @@ const createTestPage = ({ userId }: props) => {
 
       await createTest({ testData, clerkId: userId });
 
-      router.push("/teacher/edit-tests");
+      router.push("/teacher/edit-test");
     } catch (error) {
       console.log(error);
     }

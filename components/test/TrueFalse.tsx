@@ -74,12 +74,12 @@ const addTrueFalse = ({ testId }: any) => {
             name="question"
             render={({ field }) => (
               <FormItem className="space-y-3.5">
-                <FormLabel>
+                <FormLabel className="text-dark100_light900">
                   Question <span className="text-primary-500">*</span>
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="KU is located in Dhulikhel."
+                    placeholder="Is wordpress a programming IDE ?"
                     className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
                     {...field}
                   />
@@ -95,24 +95,23 @@ const addTrueFalse = ({ testId }: any) => {
             name="answer"
             render={({ field }) => (
               <FormItem className="space-y-3">
-                <FormLabel>Notify me about...</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    className="flex flex-col space-y-1"
+                    className="flex flex-col space-y-1 "
                   >
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
-                        <RadioGroupItem value="true" />
+                        <RadioGroupItem className=" text-dark300_light700" value="true" />
                       </FormControl>
-                      <FormLabel className="font-normal">True</FormLabel>
+                      <FormLabel className="font-normal text-dark100_light900">True</FormLabel>
                     </FormItem>
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
-                        <RadioGroupItem value="false" />
+                        <RadioGroupItem className=" text-dark300_light700" value="false" />
                       </FormControl>
-                      <FormLabel className="font-normal">False</FormLabel>
+                      <FormLabel className="font-normal text-dark100_light900">False</FormLabel>
                     </FormItem>
                   </RadioGroup>
                 </FormControl>
@@ -125,8 +124,12 @@ const addTrueFalse = ({ testId }: any) => {
             name="marks"
             render={({ field }) => (
               <FormItem className="flex flex-col max-w-xs">
-                <FormLabel>Points</FormLabel>
-                <Input type="number" {...field} />
+                <FormLabel className="text-dark100_light900">Points</FormLabel>
+                <Input
+                className="background-light700_dark300 text-dark300_light700"
+                type="number"
+                {...field}
+                 />
 
                 <FormMessage />
               </FormItem>
