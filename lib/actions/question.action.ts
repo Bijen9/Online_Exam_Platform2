@@ -103,9 +103,9 @@ export async function addWritten(params: any) {
   try {
     connectTodatabase();
     const { writtenData } = params;
-    const written = await Written.create({
-      writtenData,
-    });
+
+    const written = await Written.create(writtenData);
+
     return written;
   } catch (error) {
     console.log("error occured");

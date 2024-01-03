@@ -125,38 +125,45 @@ export async function getCreatedTest(params: any) {
     console.log(error);
   }
 }
+
 export async function getEditTest(params: any) {
   try {
     connectTodatabase();
     const { userId } = params;
     const user = await User.findById(userId);
     if (user) {
-      const editableTest = await Test.find({
+      let editableTest = await Test.find({
         CreatedBy: userId,
         published: false,
         status: true,
       });
 
-      const editableWithCount = editableTest.forEach(async (test) => {
-        const totalMCQsCount = await MCQ.find({
-          testId: test._id,
-        }).countDocuments();
-        const totalTFsCount = await True_False.find({
-          testId: test._id,
-        }).countDocuments();
-        const totalWrittenCount = await Written.find({
-          testId: test._id,
-        }).countDocuments();
-        test.totalQuestions =
-          totalMCQsCount + totalTFsCount + totalWrittenCount;
-        console.log();
-      });
-      console.log("logged from here", editableWithCount);
-      return editableTest;
+      const editableTest1 = await Promise.all(
+        editableTest.map(async (test, index) => {
+          const totalMCQsCount = await MCQ.find({
+            testId: test._id,
+          }).countDocuments();
+
+          const totalTFsCount = await True_False.find({
+            testId: test._id,
+          }).countDocuments();
+
+          const totalWrittenCount = await Written.find({
+            testId: test._id,
+          }).countDocuments();
+
+          test.totalQuestions =
+            totalMCQsCount + totalTFsCount + totalWrittenCount;
+          return test;
+        })
+      );
+
+      console.log("logged from here", editableTest1[0]);
+      return editableTest1;
     }
     return [];
   } catch (error) {
-    console.log("error occured");
+    console.log("error occurred");
     console.log(error);
   }
 }

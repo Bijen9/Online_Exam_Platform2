@@ -21,40 +21,40 @@ import {
 interface props {
   testId: string;
 }
-import { createTrueFalseSchema } from "@/lib/validation";
+import { createWrittenSchema } from "@/lib/validation";
 import { useRouter, usePathname } from "next/navigation";
-import { addMcq } from "@/lib/actions/question.action";
+import { addWritten } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
-const addTrueFalse = ({ testId }: any) => {
+const addWrittens = ({ testId }: any) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
-  const form = useForm<z.infer<typeof createTrueFalseSchema>>({
-    resolver: zodResolver(createTrueFalseSchema),
+  const form = useForm<z.infer<typeof createWrittenSchema>>({
+    resolver: zodResolver(createWrittenSchema),
     defaultValues: {
       question: "",
-      answer: "false",
+      correctAnswer: "",
       marks: 0,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof createTrueFalseSchema>) {
+  async function onSubmit(values: z.infer<typeof createWrittenSchema>) {
     // Do something with the form values.
     setIsSubmitting(true);
     try {
-      const { question, answer, marks } = values;
+      const { question, correctAnswer, marks } = values;
 
-      const mcqData = {
+      const writtenData = {
         question,
-        answer: answer == "true" ? true : false,
+        correctAnswer,
         marks,
         testId: JSON.parse(testId),
       };
-      console.log(mcqData);
-      await addMcq({ mcqData });
+      console.log(writtenData);
+      await addWritten({ writtenData });
 
       router.push(`/teacher/edit-test/${JSON.parse(testId)}`);
     } catch (error) {
@@ -91,46 +91,28 @@ const addTrueFalse = ({ testId }: any) => {
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
-            name="answer"
+            name="correctAnswer"
             render={({ field }) => (
-              <FormItem className="space-y-3">
+              <FormItem className="space-y-3.5">
+                <FormLabel className="text-dark100_light900">
+                  Answer for teacher's refrence.{" "}
+                  <span className="text-primary-500">*</span>
+                </FormLabel>
                 <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex flex-col space-y-1 "
-                  >
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem
-                          className=" text-dark300_light700"
-                          value="true"
-                        />
-                      </FormControl>
-                      <FormLabel className="font-normal text-dark100_light900">
-                        True
-                      </FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem
-                          className=" text-dark300_light700"
-                          value="false"
-                        />
-                      </FormControl>
-                      <FormLabel className="font-normal text-dark100_light900">
-                        False
-                      </FormLabel>
-                    </FormItem>
-                  </RadioGroup>
+                  <Textarea
+                    placeholder="Yes wordpress is a programming IDE."
+                    className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
+                    {...field}
+                  />
                 </FormControl>
+
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="marks"
@@ -166,4 +148,4 @@ const addTrueFalse = ({ testId }: any) => {
   );
 };
 
-export default addTrueFalse;
+export default addWrittens;

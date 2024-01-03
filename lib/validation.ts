@@ -11,7 +11,7 @@ export const createTestSchema = z.object({
   }),
 });
 
-export const createMCQSchema = z.object({
+export const createTrueFalseSchema = z.object({
   question: z.string().min(2).max(300),
   answer: z.enum(["true", "false"]),
   marks: z.preprocess(
@@ -27,6 +27,15 @@ export const createMCQsSchema = z.object({
   option3: z.string(),
   option4: z.string(),
   answer: z.string(),
+  marks: z.preprocess(
+    (a) => parseInt(z.string().parse(a), 10),
+    z.number().gte(1, "Must be 1 and above").lte(100, "Must be less than 100")
+  ),
+});
+
+export const createWrittenSchema = z.object({
+  question: z.string().min(2).max(300),
+  correctAnswer: z.string(),
   marks: z.preprocess(
     (a) => parseInt(z.string().parse(a), 10),
     z.number().gte(1, "Must be 1 and above").lte(100, "Must be less than 100")
