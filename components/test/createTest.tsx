@@ -77,7 +77,7 @@ const createTestPage = ({ userId }: props) => {
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="space-y-3.5">
+            <FormItem className="space-y-3.5 text-dark100_light900">
               <FormLabel>
                 Name <span className="text-primary-500">*</span>
               </FormLabel>
@@ -97,7 +97,7 @@ const createTestPage = ({ userId }: props) => {
           control={form.control}
           name="discription"
           render={({ field }) => (
-            <FormItem className="space-y-3.5">
+            <FormItem className="space-y-3.5 text-dark100_light900">
               <FormLabel>
                 Description <span className="text-primary-500">*</span>
               </FormLabel>
@@ -117,9 +117,9 @@ const createTestPage = ({ userId }: props) => {
           control={form.control}
           name="startTime"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem className="flex flex-col text-dark100_light900">
               <FormLabel>Test time from</FormLabel>
-              <Popover>
+              <Popover >
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
@@ -134,11 +134,11 @@ const createTestPage = ({ userId }: props) => {
                       ) : (
                         <span>Start date</span>
                       )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50 text-dark100_light900" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent className="w-auto p-0 " align="start">
                   <Calendar
                     mode="single"
                     selected={field.value}
@@ -147,6 +147,7 @@ const createTestPage = ({ userId }: props) => {
                       date > new Date() || date < new Date("1900-01-01")
                     }
                     initialFocus
+                    className="text-dark100_light900 bg-white dark:bg-zinc-950"
                   />
                 </PopoverContent>
               </Popover>
@@ -161,11 +162,11 @@ const createTestPage = ({ userId }: props) => {
           control={form.control}
           name="endTime"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem className="flex flex-col text-dark100_light900">
               <FormLabel>Test time until</FormLabel>
-              <Popover>
+              <Popover >
                 <PopoverTrigger asChild>
-                  <FormControl>
+                  <FormControl className="text-dark100_light900">
                     <Button
                       variant={"outline"}
                       className={cn(
@@ -191,6 +192,7 @@ const createTestPage = ({ userId }: props) => {
                       date > new Date() || date < new Date("1900-01-01")
                     }
                     initialFocus
+                    className="text-dark100_light900 bg-white dark:bg-zinc-950"
                   />
                 </PopoverContent>
               </Popover>

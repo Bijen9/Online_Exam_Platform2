@@ -13,16 +13,18 @@ const GlobalSearch = () => {
           src="/assets/icons/search.svg"
           width={20}
           height={20}
-          alt="search_icon"
+          alt="search"
           className="cursor-pointer"
         ></Image>
         <Input
           type="text"
-          placeholder="Search Globally"
-          value=""
-          readOnly
-          className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none ontline-none"
+          placeholder="Search globally"   
+          value=""      
+          className="paragraph-regular no-focus text-dark400_light700
+          background-light800_darkgradient border-none shadow-none ontline-none"
         />
+       
+              
       </div>
     </div>
   );

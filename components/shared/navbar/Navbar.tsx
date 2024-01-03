@@ -20,8 +20,8 @@ const Navbar = () => {
           height={23}
           alt="onlineExamPlatform_logo"
         />
-        <p className="h2-bold  text-dark100_light900 font-spaceGrotesk max-sm:hidden">
-          Exam Platform <span className="text-primary-500">Online</span>
+        <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
+          Exam Platform  <span className="text-primary-500">Online</span>
         </p>
       </Link>
 
