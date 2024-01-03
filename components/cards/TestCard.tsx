@@ -41,26 +41,15 @@ const TestCard = async ({
           >
             {getTimestamp(createdAt)}
           </span>
-          <Link href={`/question/${_id}`}>
-            <h3
-              className="sm:h3-semibold base-semibold 
+
+          <h3
+            className="sm:h3-semibold base-semibold 
                     text-dark200_light900 line-clamp-1 flex-1"
-            >
-              {name}
-            </h3>
-          </Link>
+          >
+            {name}
+          </h3>
         </div>
       </div>
-
-      {/* <div className='mt-3.5 flex flex-wrap gap-2'> 
-            {tags.map((tag) => (
-                <RenderTag 
-                    key={tag._id}
-                    _id={tag._id}
-                    name= {tag.name}
-                />
-                ))}
-        </div> */}
 
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
         <Metric

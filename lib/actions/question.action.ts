@@ -26,6 +26,7 @@ export async function deleteMcq(params: any) {
   try {
     connectTodatabase();
     const { mcqId } = params;
+    console.log(mcqId);
     const mcq = await MCQ.findByIdAndDelete(mcqId);
     return mcq;
   } catch (error) {
@@ -57,9 +58,8 @@ export async function addTrueFalse(params: any) {
   try {
     connectTodatabase();
     const { trueFalseData } = params; //add mechanism to check if user can add mcq to the test later
-    const trueFalse = await True_False.create({
-      trueFalseData,
-    });
+    console.log("true here", trueFalseData);
+    const trueFalse = await True_False.create(trueFalseData);
     return trueFalse;
   } catch (error) {
     console.log("error occured");

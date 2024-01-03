@@ -23,11 +23,11 @@ interface props {
 }
 import { createTrueFalseSchema } from "@/lib/validation";
 import { useRouter, usePathname } from "next/navigation";
-import { addMcq } from "@/lib/actions/question.action";
+import { addMcq, addTrueFalse } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
-const addTrueFalse = ({ testId }: any) => {
+const addsTrueFalse = ({ testId }: any) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -47,14 +47,14 @@ const addTrueFalse = ({ testId }: any) => {
     try {
       const { question, answer, marks } = values;
 
-      const mcqData = {
+      const trueFalseData = {
         question,
         answer: answer == "true" ? true : false,
         marks,
         testId: JSON.parse(testId),
       };
-      console.log(mcqData);
-      await addMcq({ mcqData });
+      console.log(trueFalseData);
+      await addTrueFalse({ trueFalseData });
 
       router.push(`/teacher/edit-test/${JSON.parse(testId)}`);
     } catch (error) {
@@ -166,4 +166,4 @@ const addTrueFalse = ({ testId }: any) => {
   );
 };
 
-export default addTrueFalse;
+export default addsTrueFalse;
