@@ -13,9 +13,7 @@ export async function addMcq(params: any) {
   try {
     connectTodatabase();
     const { mcqData } = params;
-    const mcq = await MCQ.create({
-      mcqData,
-    });
+    const mcq = await MCQ.create(mcqData);
     return mcq;
   } catch (error) {
     console.log("error occured");
@@ -58,7 +56,7 @@ export async function attendMcq(params: any) {
 export async function addTrueFalse(params: any) {
   try {
     connectTodatabase();
-    const { trueFalseData } = params;
+    const { trueFalseData } = params; //add mechanism to check if user can add mcq to the test later
     const trueFalse = await True_False.create({
       trueFalseData,
     });

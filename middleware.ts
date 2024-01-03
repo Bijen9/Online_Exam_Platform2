@@ -20,7 +20,7 @@ export default authMiddleware({
       return redirectToSignIn({ returnBackUrl: req.url });
     }
     if (auth.userId && req.nextUrl.pathname == "/sign-in") {
-      const bufferuser = new URL("/bufferuser", req.url);
+      const bufferuser = new URL("/", req.url);
       return NextResponse.redirect(bufferuser.href);
     }
   },
