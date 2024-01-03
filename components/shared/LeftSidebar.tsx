@@ -8,6 +8,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { SidebarLink } from "@/types";
 
+
 const LeftSidebar = () => {
   const pathname = usePathname();
   return (
@@ -18,18 +19,20 @@ const LeftSidebar = () => {
     >
       <div className="flex flex-1 flex-col gap-6">
         {sidebarLinksTeacher.map((item: SidebarLink) => {
+          
           const isActive =
             (pathname.includes(item.route) && item.route.length > 1) ||
             pathname === item.route;
           return (
+          
             <Link
+            key={item.route}
               href={item.route}
               className={`${
                 isActive
                   ? "primary-gradient rounded-lg text-light-900"
                   : "text-dark300_light900"
               } flex items-center justify-start gap-4 bg-transparent p-4`}
-              key={item.route}
             >
               <Image
                 src={item.imgURL}
@@ -46,6 +49,7 @@ const LeftSidebar = () => {
                 {item.label}
               </p>
             </Link>
+            
           );
         })}
       </div>

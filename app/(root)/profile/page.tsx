@@ -2,6 +2,7 @@ import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import QuestionCard from "@/components/cards/QuestionCard";
+import React from "react";
 
 const questions = [
   {
@@ -38,40 +39,22 @@ const questions = [
   },
 ];
 
-export default function Home() {
+const teacherPage = () => {
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">
-        <h1 className="h1-bold text-dark100_light900">All Tests</h1>
-
+        <h1 className="h1-bold text-dark100_light900">Profile</h1>
       </div>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:item-center">
-        <LocalSearchbar
-          route="/"
-          iconPosition="left"
-          imgSrc="/assests/icons/search.svg"
-          placeholder="Search for tests"
-          otherClasses="flex-1"
-        />
+     
       </div>
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.map((question) => (
-          <QuestionCard
-            key={question._id}
-            _id={question._id}
-            title={question.title}
-            tags={question.tags.map((tag) => ({
-              _id: tag._id.toString(),
-              name: tag.name,
-            }))}
-            author={question.author}
-            questions={question.questions}
-            createdAt={question.createdAt}
-          />
-        ))}
+
       </div>
     </>
   );
-}
+};
+
+export default teacherPage;

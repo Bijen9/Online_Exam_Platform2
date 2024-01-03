@@ -5,7 +5,7 @@ import CreateTest from "@/components/test/createTest";
 const page = () => {
   const userId: string = auth().userId!;
 
-  return <CreateTest userId={JSON.stringify(userId)} />;
+  return <CreateTest userId={JSON.stringify(userId)} />
 };
 
 export default page;

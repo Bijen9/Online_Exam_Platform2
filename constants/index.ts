@@ -10,35 +10,21 @@ export const sidebarLinksStudent: SidebarLink[] = [
     route: "/",
     label: "Home",
   },
-  {
-    imgURL: "/assets/icons/users.svg",
-    route: "/community",
-    label: "Community",
-  },
+
   {
     imgURL: "/assets/icons/star.svg",
-    route: "/collection",
-    label: "Collections",
+    route: "/studentresult",
+    label: "Result",
   },
   {
     imgURL: "/assets/icons/suitcase.svg",
-    route: "/jobs",
-    label: "Find Jobs",
-  },
-  {
-    imgURL: "/assets/icons/tag.svg",
-    route: "/tags",
-    label: "Tags",
+    route: "/taketest",
+    label: "Take Test",
   },
   {
     imgURL: "/assets/icons/user.svg",
     route: "/profile",
     label: "Profile",
-  },
-  {
-    imgURL: "/assets/icons/question.svg",
-    route: "/ask-question",
-    label: "Ask a question",
   },
 ];
 
@@ -46,7 +32,7 @@ export const sidebarLinksTeacher: SidebarLink[] = [
   {
     imgURL: "/assets/icons/home.svg",
     route: "/teacher",
-    label: "Home",
+    label: "Home ",
   },
 
   {

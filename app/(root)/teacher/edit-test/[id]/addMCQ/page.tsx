@@ -14,7 +14,7 @@ const AddMCQ = async ({ params, searchParams }) => {
     <>
       <h1 className="h1-bold text-dark100_light900">Adding MCQ</h1>
       <h2 className="h2 text-dark100_light900">for test {test.name}</h2>
-      <AddQuestion testId={JSON.stringify(testId)} />;
+      <AddQuestion testId={JSON.stringify(testId)} />
     </>
   );
 };

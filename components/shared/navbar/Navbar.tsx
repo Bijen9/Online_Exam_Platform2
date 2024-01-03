@@ -21,7 +21,7 @@ const Navbar = () => {
           alt="onlineExamPlatform_logo"
         />
         <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-          Exam Platform  <span className="text-primary-500">Online</span>
+          Exam Platform <span className="text-primary-500">Online</span>
         </p>
       </Link>
 
