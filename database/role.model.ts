@@ -13,6 +13,6 @@ const RoleSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Role = models.Role || model<IRole>(" Role ", RoleSchema);
+const Role = models.Role || model<IRole>("Role", RoleSchema);
 
 export default Role;

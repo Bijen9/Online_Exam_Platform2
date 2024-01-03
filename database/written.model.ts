@@ -18,6 +18,6 @@ const WrittenSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Written = models.Written || model<IWritten>(" Written ", WrittenSchema);
+const Written = models.Written || model<IWritten>("Written", WrittenSchema);
 
 export default Written;

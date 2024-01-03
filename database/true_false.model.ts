@@ -19,6 +19,6 @@ const True_FalseSchema = new Schema({
 });
 
 const True_False =
-  models.True_False || model<ITrue_False>(" True_False ", True_FalseSchema);
+  models.True_False || model<ITrue_False>("True_False", True_FalseSchema);
 
 export default True_False;

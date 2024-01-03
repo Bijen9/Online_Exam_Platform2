@@ -14,16 +14,16 @@ export interface ITest extends Document {
 
 const TestSchema = new Schema({
   name: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String },
   CreatedBy: { type: Schema.Types.ObjectId, ref: "User" },
   startTime: { type: Date, required: true },
-  endTime: { type: Date },
+  endTime: { type: Date, required: true },
   status: { type: Boolean, default: true },
   published: { type: Boolean, default: false },
   CompletedBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
   createdAt: { type: Date, default: Date.now },
 });
 
-const Test = models.Test || model<ITest>(" Test ", TestSchema);
+const Test = models.Test || model<ITest>("Test", TestSchema);
 
 export default Test;

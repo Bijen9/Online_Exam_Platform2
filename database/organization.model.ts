@@ -18,6 +18,6 @@ const OrganizationSchema = new Schema({
 
 const Organization =
   models.Organization ||
-  model<IOrganization>(" Organization ", OrganizationSchema);
+  model<IOrganization>("Organization", OrganizationSchema);
 
 export default Organization;

@@ -20,6 +20,6 @@ const MCQSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const MCQ = models.MCQ || model<IMCQ>(" MCQ ", MCQSchema);
+const MCQ = models.MCQ || model<IMCQ>("MCQ", MCQSchema);
 
 export default MCQ;

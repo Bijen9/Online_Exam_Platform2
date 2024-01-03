@@ -8,18 +8,26 @@ import Written from "@/database/written.model";
 import Wanswer from "@/database/wanswer.model";
 import User from "@/database/user.model";
 
-export default async function createTest(params: any) {
+export async function createTest(params: any) {
   try {
     connectTodatabase();
-    const { testData } = params;
+    const { testData, clerkId } = params;
 
-    const test = await Test.create({
-      testData,
-    });
+    // find the user who is creating the test
+    const userId = await User.findOne({ clerkId: JSON.parse(clerkId) }).select(
+      "_id"
+    );
+    if (!userId) {
+      return null;
+    }
+    console.log(userId, testData);
+    testData.CreatedBy = userId._id;
+    const test = await Test.create(testData);
+    console.log(test);
     return test;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    console.log("error occured , error");
+    throw error;
   }
 }
 
@@ -96,6 +104,71 @@ export async function getCreatedTest(params: any) {
       return createdTest;
     }
     return null;
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+export async function getEditTest(params: any) {
+  try {
+    connectTodatabase();
+    const { userId } = params;
+    const user = await User.findById(userId);
+    if (user) {
+      const editableTest = await Test.find({
+        CreatedBy: userId,
+        published: false,
+        status: true,
+      });
+
+      const editableWithCount = editableTest.forEach(async (test) => {
+        const totalMCQsCount = await MCQ.find({
+          testId: test._id,
+        }).countDocuments();
+        const totalTFsCount = await True_False.find({
+          testId: test._id,
+        }).countDocuments();
+        const totalWrittenCount = await Written.find({
+          testId: test._id,
+        }).countDocuments();
+        test.totalQuestions =
+          totalMCQsCount + totalTFsCount + totalWrittenCount;
+        console.log();
+      });
+      console.log("logged from here", editableWithCount);
+      return editableTest;
+    }
+    return [];
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+export async function getQuestionCountInTest(params: any) {
+  try {
+    connectTodatabase();
+    const { testId } = params;
+
+    const MCQs = await MCQ.find({
+      testId,
+    }).countDocuments();
+    const TFs = await True_False.find({
+      testId,
+    }).countDocuments();
+    const Writtens = await Written.find({
+      testId,
+    }).countDocuments();
+    const total = MCQs + TFs + Writtens;
+    console.log();
+    const count = {
+      MCQs,
+      TFs,
+      Writtens,
+      total,
+    };
+
+    return count;
   } catch (error) {
     console.log("error occured");
     console.log(error);

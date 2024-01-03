@@ -23,6 +23,23 @@ export async function getUserById(params: any) {
   }
 }
 
+export async function getUserId(params: any) {
+  try {
+    connectTodatabase();
+    const { clerkId } = params;
+    const user = await User.findOne({ clerkId });
+    if (user) {
+      // console.log("user found");
+      return user._id;
+    }
+    console.log("user not found");
+    return null;
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
 // live search user by name
 export async function searchUserByName(params: any) {
   try {
