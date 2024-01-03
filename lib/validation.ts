@@ -19,3 +19,16 @@ export const createMCQSchema = z.object({
     z.number().gte(1, "Must be 1 and above").lte(100, "Must be less than 100")
   ),
 });
+
+export const createMCQsSchema = z.object({
+  question: z.string().min(2).max(300),
+  option1: z.string(),
+  option2: z.string(),
+  option3: z.string(),
+  option4: z.string(),
+  answer: z.string(),
+  marks: z.preprocess(
+    (a) => parseInt(z.string().parse(a), 10),
+    z.number().gte(1, "Must be 1 and above").lte(100, "Must be less than 100")
+  ),
+});

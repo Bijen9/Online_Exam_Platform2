@@ -18,13 +18,10 @@ const GlobalSearch = () => {
         ></Image>
         <Input
           type="text"
-          placeholder="Search globally"   
-          value=""      
+          placeholder="Search globally"
           className="paragraph-regular no-focus text-dark400_light700
           background-light800_darkgradient border-none shadow-none ontline-none"
         />
-       
-              
       </div>
     </div>
   );
