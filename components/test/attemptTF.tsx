@@ -63,8 +63,10 @@ const addsTrueFalse = ({ questionn, qno, userId }: any) => {
 
   return (
     <>
+    <div className="card-wrapper p-9
+    sm:px-11 rounded-[10px] dark:text-white dark:shadow-gray-900">
       <div>Question no.{qno + 1}</div>
-      <div>{question.question}</div>
+      <div>&rarr; {question.question}</div>
       {finished ? (
         ""
       ) : (
@@ -128,6 +130,7 @@ const addsTrueFalse = ({ questionn, qno, userId }: any) => {
         </Form>
       )}
       {finished ? "Saved Successfully" : ""}
+    </div>
     </>
   );
 };

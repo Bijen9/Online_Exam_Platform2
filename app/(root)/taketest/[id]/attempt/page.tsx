@@ -21,9 +21,10 @@ const teacherPage = async ({ params, searchParams }) => {
 
   return (
     <>
-      <div>
+      
+        <div >
         <h1 className="h1-bold text-dark100_light900">{test.name}</h1>
-        <> your progress will be saved automatically after pressing Confirm</>
+        <h4 className="text-sm text-neutral-500"> your progress will be saved automatically after pressing Confirm</h4>
         {trueFalse?.map((question, index) => {
           return (
             <AttemptTF
@@ -34,7 +35,8 @@ const teacherPage = async ({ params, searchParams }) => {
             />
           );
         })}
-      </div>
+        </div>
+      
     </>
   );
 };
