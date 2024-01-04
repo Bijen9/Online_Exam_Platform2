@@ -86,12 +86,12 @@ const addMCQ = ({ testId }: any) => {
             name="question"
             render={({ field }) => (
               <FormItem className="space-y-3.5">
-                <FormLabel>
+                <FormLabel className="text-dark100_light900">
                   Question <span className="text-primary-500">*</span>
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="KU is located in Dhulikhel."
+                    placeholder="Which one is Operating System"
                     className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
                     {...field}
                   />
@@ -151,7 +151,7 @@ const addMCQ = ({ testId }: any) => {
                   <FormItem className="space-y-3.5 text-dark100_light900">
                     <FormControl>
                       <Input
-                        placeholder="Test Name"
+                        placeholder="Option 1"
                         className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
                         {...field}
                       />
@@ -167,7 +167,7 @@ const addMCQ = ({ testId }: any) => {
                   <FormItem className="space-y-3.5 text-dark100_light900">
                     <FormControl>
                       <Input
-                        placeholder="Test Name"
+                        placeholder="Option 2"
                         className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
                         {...field}
                       />
@@ -183,7 +183,7 @@ const addMCQ = ({ testId }: any) => {
                   <FormItem className="space-y-3.5 text-dark100_light900">
                     <FormControl>
                       <Input
-                        placeholder="Test Name"
+                        placeholder="Option 3"
                         className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
                         {...field}
                       />
@@ -199,7 +199,7 @@ const addMCQ = ({ testId }: any) => {
                   <FormItem className="space-y-3.5 text-dark100_light900">
                     <FormControl>
                       <Input
-                        placeholder="Test Name"
+                        placeholder="Option 4"
                         className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border"
                         {...field}
                       />
@@ -215,7 +215,7 @@ const addMCQ = ({ testId }: any) => {
             name="marks"
             render={({ field }) => (
               <FormItem className="flex flex-col max-w-xs">
-                <FormLabel>Points</FormLabel>
+                <FormLabel className="text-dark100_light900">Points</FormLabel>
                 <Input type="number" {...field} />
 
                 <FormMessage />
