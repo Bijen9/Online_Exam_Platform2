@@ -264,9 +264,15 @@ export async function submitTest(params: any) {
         test.completedBy.push(userId);
         await test.save();
         user.TestAttempted.push(testId);
-        await user.save();
+        await User.updateOne(
+          { _id: userId },
+          { $push: { TestIssued: testId } }
+        );
         user.TestIssued.pull(testId);
-        await user.save();
+        await User.updateOne(
+          { _id: userId },
+          { $push: { TestAttempted: testId } }
+        );
         return test;
       }
       return null;

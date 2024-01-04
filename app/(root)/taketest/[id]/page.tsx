@@ -12,11 +12,6 @@ const teacherPage = async ({ params, searchParams }) => {
   const userId = await getUserId({ clerkId });
   const test = await getTestById({ testId: id });
 
-  console.log(
-    "..........................................................................HERE",
-    test
-  );
-
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">

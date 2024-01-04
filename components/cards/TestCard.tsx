@@ -64,13 +64,13 @@ const TestCard = async ({
           textStyles="body-medium text-dark400_light700"
         />
 
-        <Metric
+        {/* <Metric
           imgurl="/assets/icons/message.svg"
           alt="message"
           value={count!.total}
           title=" Question"
           textStyles="small-medium text-dark400_light800"
-        />
+        /> */}
       </div>
     </div>
   );
