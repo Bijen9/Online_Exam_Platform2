@@ -101,41 +101,41 @@ const addMCQ = ({ testId }: any) => {
               </FormItem>
             )}
           />
-          <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">
+          <div className="flex flex-wrap-reverse gap-1 align-center sm:flex-row sm:item-center">
             <FormField
               control={form.control}
               name="answer"
               render={({ field }) => (
-                <FormItem className=" flex flex-col space-y-3 h-full ">
-                  <FormControl className="h-full">
+                <FormItem className=" flex flex-col align-center  ">
+                  <FormControl className="">
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                      className="flex flex-col space-y-1 h-full"
+                      className="flex flex-col space-y-15 h-full "
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0 h-full">
+                      <FormItem className="flex items-center space-x-3  h-full">
                         <FormControl className="h-full">
                           <RadioGroupItem value="0" />
                         </FormControl>
-                        <FormLabel className="font-normal">--</FormLabel>
+                        <FormLabel className="font-normal"></FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0 h-full">
+                      <FormItem className="flex items-center space-x-3  h-full">
                         <FormControl className="h-full">
                           <RadioGroupItem value="1" />
                         </FormControl>
-                        <FormLabel className="font-normal">--</FormLabel>
+                        <FormLabel className="font-normal"></FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0 h-full">
+                      <FormItem className="flex items-center space-x-3  h-full">
                         <FormControl className="h-full">
                           <RadioGroupItem value="2" />
                         </FormControl>
-                        <FormLabel className="font-normal">--</FormLabel>
+                        <FormLabel className="font-normal"></FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0 h-full">
+                      <FormItem className="flex items-center space-x-3 h-full">
                         <FormControl className="h-full">
                           <RadioGroupItem value="3" />
                         </FormControl>
-                        <FormLabel className="font-normal">--</FormLabel>
+                        <FormLabel className="font-normal"></FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
