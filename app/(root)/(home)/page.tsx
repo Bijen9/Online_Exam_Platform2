@@ -29,7 +29,7 @@ export default async function Home() {
 
       <div className="mt-10 flex w-full flex-col gap-6">
         {tests.map((test: any) => (
-          <Link href={`/student/test/${test._id}`}>
+          <Link href={`/taketest/${test._id}`}>
             <TestCard
               key={test._id}
               _id={test._id}

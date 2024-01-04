@@ -104,10 +104,10 @@ export async function getTestById(params: any) {
     const { userId, testId } = params;
     const test = await Test.findById(testId);
 
-    if (JSON.stringify(test.CreatedBy) === JSON.stringify(userId)) {
-      return test;
-    }
-    return "not your test to edit";
+    // if (JSON.stringify(test.CreatedBy) === JSON.stringify(userId)) {
+    return test;
+    // }
+    // return "not your test to edit";
   } catch (error) {
     console.log("error occured");
     console.log(error);
@@ -246,6 +246,32 @@ export async function deleteTest(params: any) {
     });
 
     const test = await Test.findByIdAndDelete(testId);
+  } catch (error) {
+    console.log("error occured");
+    console.log(error);
+  }
+}
+
+// add userId to completedBy array in test also add testId to TestIssued and TestAttempted array in user
+export async function submitTest(params: any) {
+  try {
+    connectTodatabase();
+    const { testId, userId } = params;
+    const user = await User.findById(userId);
+    if (user) {
+      const test = await Test.findById(testId);
+      if (test) {
+        test.completedBy.push(userId);
+        await test.save();
+        user.TestAttempted.push(testId);
+        await user.save();
+        user.TestIssued.pull(testId);
+        await user.save();
+        return test;
+      }
+      return null;
+    }
+    return null;
   } catch (error) {
     console.log("error occured");
     console.log(error);
