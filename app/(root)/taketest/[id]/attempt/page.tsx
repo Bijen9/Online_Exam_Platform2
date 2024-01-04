@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getTestById, submitTest } from "@/lib/actions/test.action";
 import { auth } from "@clerk/nextjs";
 import { getUserId } from "@/lib/actions/user.action";
-import AttemptTest from "@/components/test/attemptTest";
+import AttemptTF from "@/components/test/attemptTF";
 import { getQuestions } from "@/lib/actions/question.action";
 
 const teacherPage = async ({ params, searchParams }) => {
@@ -17,19 +17,23 @@ const teacherPage = async ({ params, searchParams }) => {
     userId: userId,
   });
 
-  console.log(
-    "..........................................................................HERE",
-    questionAll
-  );
+  const { mcq, trueFalse, written } = questionAll;
 
   return (
     <>
-      <div className="flex w-full flex-row justify-between gap-4 sm:flex-row sm:item-center">
+      <div>
         <h1 className="h1-bold text-dark100_light900">{test.name}</h1>
-        <AttemptTest
-          testId={JSON.stringify(test._id)}
-          userId={JSON.stringify(userId)}
-        />
+        <> your progress will be saved automatically after pressing Confirm</>
+        {trueFalse?.map((question, index) => {
+          return (
+            <AttemptTF
+              userId={JSON.stringify(userId)}
+              questionn={JSON.stringify(question)}
+              qno={index}
+              key={index}
+            />
+          );
+        })}
       </div>
     </>
   );

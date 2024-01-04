@@ -20,6 +20,10 @@ export const createTrueFalseSchema = z.object({
   ),
 });
 
+export const attendTrueFalseSchema = z.object({
+  answer: z.enum(["true", "false"]),
+});
+
 export const createMCQsSchema = z.object({
   question: z.string().min(2).max(300),
   option1: z.string(),

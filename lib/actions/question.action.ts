@@ -87,10 +87,12 @@ export async function attendTrueFalse(params: any) {
     const { trueFalseId, userId, answer } = params;
     const trueFalse = await True_False.findById(trueFalseId);
     // if if the answer is correct
+    console.log(trueFalse.answer, answer, userId);
     if (trueFalse.answer === answer) {
       // add the user to the correct students
       trueFalse.CorrectStudents.push(userId);
       trueFalse.save();
+      console.log("trueFalse Saved");
     }
   } catch (error) {
     console.log("error occured");
