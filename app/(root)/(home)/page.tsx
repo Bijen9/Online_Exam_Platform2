@@ -1,49 +1,20 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import QuestionCard from "@/components/cards/QuestionCard";
+import TestCard from "@/components/cards/TestCard";
+import { getIssuedTest } from "@/lib/actions/test.action";
+import { auth } from "@clerk/nextjs";
+import { getUserId } from "@/lib/actions/user.action";
 
-const questions = [
-  {
-    _id: "1",
-    title: "MATH 207 unit test 1",
-    tags: [
-      { _id: 1, name: "python" },
-      { _id: 2, name: "sql" },
-    ],
-    author: {
-      _id: "1",
-      name: "Shyam Sundar Saha",
-      picture: "ShyamSundar.jpg",
-    },
-    views: 57,
-    questions: [],
-    createdAt: new Date("2023-12-31T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title: "DATABASE MCQs Test 2",
-    tags: [
-      { _id: 1, name: "python" },
-      { _id: 2, name: "sql" },
-    ],
-    author: {
-      _id: "2",
-      name: "Santosh Khanal",
-      picture: "SantoshKhanal.jpg",
-    },
-    views: 57,
-    questions: [],
-    createdAt: new Date("2023-12-31T12:00:00.000Z"),
-  },
-];
+export default async function Home() {
+  const clerkId: string = auth().userId!;
 
-export default function Home() {
+  const userId = await getUserId({ clerkId });
+  const tests: any = await getIssuedTest({ userId });
+  console.log(tests);
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">
         <h1 className="h1-bold text-dark100_light900">All Tests</h1>
-
       </div>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:item-center">
@@ -57,19 +28,21 @@ export default function Home() {
       </div>
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.map((question) => (
-          <QuestionCard
-            key={question._id}
-            _id={question._id}
-            title={question.title}
-            tags={question.tags.map((tag) => ({
-              _id: tag._id.toString(),
-              name: tag.name,
-            }))}
-            author={question.author}
-            questions={question.questions}
-            createdAt={question.createdAt}
-          />
+        {tests.map((test: any) => (
+          <Link href={`/student/test/${test._id}`}>
+            <TestCard
+              key={test._id}
+              _id={test._id}
+              name={test.name}
+              description={test.description}
+              startTime={test.startTime}
+              endTime={test.endTime}
+              status={test.status}
+              totalQuestion={test.totalQuestions}
+              createdAt={test.createdAt}
+              published={test.published}
+            />
+          </Link>
         ))}
       </div>
     </>

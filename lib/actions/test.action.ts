@@ -77,15 +77,21 @@ export async function getActiveTest(params: any) {
 export async function getIssuedTest(params: any) {
   try {
     connectTodatabase();
-    const { userId } = params;
-    const user = await User.findById(userId);
-    if (user) {
-      const issuedTest = await Test.find({
-        _id: { $in: user.TestIssued },
-      });
-      return issuedTest;
-    }
-    return null;
+    // const { userId } = params;
+    // const user = await User.findById(userId);
+    // if (user) {
+    //   const issuedTest = await Test.find({
+    //     _id: { $in: user.TestIssued },
+    //   });
+    //   return issuedTest;
+    // }
+    // return null;
+
+    const issuedTest = await Test.find({
+      status: false,
+      published: false,
+    });
+    return issuedTest;
   } catch (error) {
     console.log("error occured");
     console.log(error);
