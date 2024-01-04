@@ -83,12 +83,11 @@ const TestEditpage = async ({ params, searchParams }) => {
       <div>
         <h3
           className="sm:h3-semibold base-semibold 
-                    text-dark200_light900 line-clamp-1 flex-1"
+                    text-dark200_light900 line-clamp-1 flex-1 mx-2"
         >
           total questions: {MCQ?.length + TrueFalse?.length + Written?.length}
         </h3>
       </div>
-      <PublishTest test={JSON.stringify(test)} />
       {MCQ?.map((question: any) => (
         <QuestionCard
           key={JSON.stringify(question._id)}
@@ -117,6 +116,7 @@ const TestEditpage = async ({ params, searchParams }) => {
           testId={testId}
         />
       ))}
+       <PublishTest test={JSON.stringify(test)} />
     </>
   );
 };

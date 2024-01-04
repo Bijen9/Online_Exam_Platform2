@@ -18,8 +18,8 @@ const publishTest = ({ test }: any) => {
   return (
     <div>
       <Button
-        className="h4-bold  background-light800_dark300
-              text-dark400_light500 rounded-md border-none px-4 py-2 uppercase focus:bg-slate-100 dark:focus:bg-light-300"
+          className="h4-bold    primary-gradient  
+              text-dark400_light500 rounded-md border-none my-2 px-4 py-2 uppercase "
         onClick={async () => {
           const testData = {
             published: false,
