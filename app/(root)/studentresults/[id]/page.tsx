@@ -30,8 +30,8 @@ const ResultDetail = async ({ params, searchParams }: any) => {
                 Total Marks: {results.totalMarks}
               </h1>
             </div>
-            {results.correctMCQAnswers!.map((result: any) => (
-              <div className="flex flex-row justify-between">
+            {results.correctMCQAnswers!.map((result: any, index: any) => (
+              <div className="flex flex-row justify-between" key={index}>
                 <h1 className="h1-bold text-dark100_light900">
                   {result.question}
                 </h1>
@@ -41,8 +41,8 @@ const ResultDetail = async ({ params, searchParams }: any) => {
               </div>
             ))}
 
-            {results.correctTFAnswers!.map((result: any) => (
-              <div className="flex flex-row justify-between">
+            {results.correctTFAnswers!.map((result: any, index: any) => (
+              <div className="flex flex-row justify-between" key={index}>
                 <h1 className="h1-bold text-dark100_light900">
                   {result.question}
                 </h1>
@@ -52,8 +52,8 @@ const ResultDetail = async ({ params, searchParams }: any) => {
               </div>
             ))}
 
-            {results.correctWrittenAnswers!.map((result: any) => (
-              <div className="flex flex-row justify-between">
+            {results.correctWrittenAnswers!.map((result: any, index: any) => (
+              <div className="flex flex-row justify-between" key={index}>
                 <h1 className="h1-bold text-dark100_light900">
                   {result.question}
                 </h1>

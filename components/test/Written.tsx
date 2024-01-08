@@ -27,7 +27,7 @@ import { addWritten } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
-const addWrittens = ({ testId }: any) => {
+const AddWrittens = ({ testId }: any) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -95,7 +95,7 @@ const addWrittens = ({ testId }: any) => {
             render={({ field }) => (
               <FormItem className="space-y-3.5">
                 <FormLabel className="text-dark100_light900">
-                  Answer for teacher's refrence.{" "}
+                  Answer for teacher&apos;s refrence.{" "}
                   <span className="text-primary-500">*</span>
                 </FormLabel>
                 <FormControl>
@@ -143,4 +143,4 @@ const addWrittens = ({ testId }: any) => {
   );
 };
 
-export default addWrittens;
+export default AddWrittens;

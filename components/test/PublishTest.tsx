@@ -11,7 +11,7 @@ import { Badge } from "../ui/badge";
 import { useRouter, usePathname } from "next/navigation";
 import { updateTest } from "@/lib/actions/test.action";
 
-const publishTest = ({ test }: any) => {
+const PublishTest = ({ test }: any) => {
   const router = useRouter();
   const Test = JSON.parse(test);
   const testId = Test.id;
@@ -36,4 +36,4 @@ const publishTest = ({ test }: any) => {
   );
 };
 
-export default publishTest;
+export default PublishTest;

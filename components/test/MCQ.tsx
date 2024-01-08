@@ -28,7 +28,7 @@ import { addMcq } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
-const addMCQ = ({ testId }: any) => {
+const AddMCQ = ({ testId }: any) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [numberOfOptions, setnumberOfOptions] = React.useState([3]);
   const router = useRouter();
@@ -236,4 +236,4 @@ const addMCQ = ({ testId }: any) => {
   );
 };
 
-export default addMCQ;
+export default AddMCQ;

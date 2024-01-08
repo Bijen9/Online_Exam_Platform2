@@ -27,7 +27,7 @@ import { addMcq, addTrueFalse } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
-const addsTrueFalse = ({ testId }: any) => {
+const AddsTrueFalse = ({ testId }: any) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -161,4 +161,4 @@ const addsTrueFalse = ({ testId }: any) => {
   );
 };
 
-export default addsTrueFalse;
+export default AddsTrueFalse;

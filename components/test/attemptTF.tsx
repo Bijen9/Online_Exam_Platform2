@@ -27,7 +27,7 @@ import { attendTrueFalse } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
-const addsTrueFalse = ({ questionn, qno, userId }: any) => {
+const AddsTrueFalse = ({ questionn, qno, userId }: any) => {
   const question = JSON.parse(questionn);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [finished, setFinished] = React.useState(false);
@@ -133,4 +133,4 @@ const addsTrueFalse = ({ questionn, qno, userId }: any) => {
   );
 };
 
-export default addsTrueFalse;
+export default AddsTrueFalse;

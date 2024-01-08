@@ -33,7 +33,7 @@ interface props {
   userId: string;
 }
 
-const createTestPage = ({ userId }: props) => {
+const CreateTestPage = ({ userId }: props) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -216,4 +216,4 @@ const createTestPage = ({ userId }: props) => {
   );
 };
 
-export default createTestPage;
+export default CreateTestPage;
