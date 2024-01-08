@@ -61,10 +61,8 @@ const createTestPage = ({ userId }: props) => {
 
       router.push("/teacher/edit-test");
     } catch (error) {
-      console.log(error);
+      throw error;
     }
-
-    console.log(values);
   }
 
   return (
@@ -119,7 +117,7 @@ const createTestPage = ({ userId }: props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col text-dark100_light900">
               <FormLabel>Test time from</FormLabel>
-              <Popover >
+              <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
@@ -164,7 +162,7 @@ const createTestPage = ({ userId }: props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col text-dark100_light900">
               <FormLabel>Test time until</FormLabel>
-              <Popover >
+              <Popover>
                 <PopoverTrigger asChild>
                   <FormControl className="text-dark100_light900">
                     <Button

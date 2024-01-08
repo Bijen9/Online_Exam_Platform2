@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import QuestionCard from "@/components/cards/QuestionCard";
 import React from "react";
-import test from "@/components/tests/test";
 
 const questions = [
   {

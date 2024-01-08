@@ -10,7 +10,7 @@ export default async function Home() {
 
   const userId = await getUserId({ clerkId });
   const tests: any = await getIssuedTest({ userId });
-  console.log(tests);
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">

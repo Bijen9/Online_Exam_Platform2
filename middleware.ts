@@ -15,8 +15,6 @@ export default authMiddleware({
     // handle users who aren't authenticated
 
     if (!auth.userId && !auth.isPublicRoute) {
-      // console.log("redirecting to sign in");
-      // console.log(auth.userId, auth.isPublicRoute);
       return redirectToSignIn({ returnBackUrl: req.url });
     }
     if (auth.userId && req.nextUrl.pathname == "/sign-in") {

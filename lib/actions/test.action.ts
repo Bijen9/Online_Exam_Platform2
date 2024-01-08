@@ -20,13 +20,12 @@ export async function createTest(params: any) {
     if (!userId) {
       return null;
     }
-    console.log(userId, testData);
+
     testData.CreatedBy = userId._id;
     const test = await Test.create(testData);
-    console.log(test);
+
     return test;
   } catch (error) {
-    console.log("error occured , error");
     throw error;
   }
 }
@@ -49,8 +48,7 @@ export async function searchTest(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -69,8 +67,7 @@ export async function getActiveTest(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -93,8 +90,7 @@ export async function getIssuedTest(params: any) {
     });
     return issuedTest;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -109,8 +105,7 @@ export async function getTestById(params: any) {
     // }
     // return "not your test to edit";
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -127,8 +122,7 @@ export async function getCreatedTest(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -163,14 +157,11 @@ export async function getEditTest(params: any) {
           return test;
         })
       );
-
-      console.log("logged from here", editableTest1[0]);
       return editableTest1;
     }
     return [];
   } catch (error) {
-    console.log("error occurred");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -189,7 +180,6 @@ export async function getQuestionCountInTest(params: any) {
       testId,
     }).countDocuments();
     const total = MCQs + TFs + Writtens;
-    console.log();
     const count = {
       MCQs,
       TFs,
@@ -199,8 +189,7 @@ export async function getQuestionCountInTest(params: any) {
 
     return count;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -214,8 +203,7 @@ export async function updateTest(params: any) {
     });
     return test;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -247,8 +235,7 @@ export async function deleteTest(params: any) {
 
     const test = await Test.findByIdAndDelete(testId);
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -279,7 +266,6 @@ export async function submitTest(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }

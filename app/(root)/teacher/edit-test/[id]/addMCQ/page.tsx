@@ -5,7 +5,7 @@ import { getUserId } from "@/lib/actions/user.action";
 import React from "react";
 import { auth } from "@clerk/nextjs";
 
-const AddMCQ = async ({ params, searchParams }) => {
+const AddMCQ = async ({ params, searchParams }: any) => {
   const testId = params.id;
   const clerkId: string = auth().userId!;
   const userId = await getUserId({ clerkId });

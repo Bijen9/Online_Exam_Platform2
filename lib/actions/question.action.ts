@@ -16,8 +16,7 @@ export async function addMcq(params: any) {
     const mcq = await MCQ.create(mcqData);
     return mcq;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -26,12 +25,10 @@ export async function deleteMcq(params: any) {
   try {
     connectTodatabase();
     const { mcqId } = params;
-    console.log(mcqId);
     const mcq = await MCQ.findByIdAndDelete(mcqId);
     return mcq;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -48,8 +45,7 @@ export async function attendMcq(params: any) {
       mcq.save();
     }
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -58,12 +54,11 @@ export async function addTrueFalse(params: any) {
   try {
     connectTodatabase();
     const { trueFalseData } = params; //add mechanism to check if user can add mcq to the test later
-    console.log("true here", trueFalseData);
+
     const trueFalse = await True_False.create(trueFalseData);
     return trueFalse;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -75,8 +70,7 @@ export async function deleteTrueFalse(params: any) {
     const trueFalse = await True_False.findByIdAndDelete(trueFalseId);
     return trueFalse;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -87,16 +81,13 @@ export async function attendTrueFalse(params: any) {
     const { trueFalseId, userId, answer } = params;
     const trueFalse = await True_False.findById(trueFalseId);
     // if if the answer is correct
-    console.log(trueFalse.answer, answer, userId);
     if (trueFalse.answer === answer) {
       // add the user to the correct students
       trueFalse.CorrectStudents.push(userId);
       trueFalse.save();
-      console.log("trueFalse Saved");
     }
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -110,8 +101,7 @@ export async function addWritten(params: any) {
 
     return written;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -123,8 +113,7 @@ export async function deleteWritten(params: any) {
     const written = await Written.findByIdAndDelete(writtenId);
     return written;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -141,8 +130,7 @@ export async function attendWritten(params: any) {
     });
     return wAnswer;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -168,8 +156,7 @@ export async function markWritten(params: any) {
       written.save();
     }
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -193,8 +180,7 @@ export async function commentWritten(params: any) {
     );
     return wanswer;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -226,8 +212,7 @@ export async function getQuestions(params: any) {
     });
     return { mcq, trueFalse, written };
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -243,7 +228,6 @@ export async function publishResult(params: any) {
     }
     return { status: "not authorized" };
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }

@@ -55,82 +55,80 @@ const addsTrueFalse = ({ questionn, qno, userId }: any) => {
       setIsSubmitting(false);
       setFinished(true);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
-
-    console.log(values);
   }
 
   return (
     <>
-    <div className="card-wrapper p-9
-    sm:px-11 rounded-[10px] dark:text-white dark:shadow-gray-900">
-      <div>Question no.{qno + 1}</div>
-      <div>&rarr; {question.question}</div>
-      {finished ? (
-        ""
-      ) : (
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-9 flex w-full gap-9 flex-col"
-          >
-            <FormField
-              control={form.control}
-              name="answer"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col space-y-1 "
-                    >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem
-                            className=" text-dark300_light700"
-                            value="true"
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal text-dark100_light900">
-                          True
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem
-                            className=" text-dark300_light700"
-                            value="false"
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal text-dark100_light900">
-                          False
-                        </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="mt-7 flex justify-end">
-              <Button
-                type="submit"
-                className="primary-gradient w-fit"
-                disabled={isSubmitting}
-                onClick={() => {
-                  console.log("button clicked");
-                }}
-              >
-                {isSubmitting ? "Confirming..." : "Confirm"}
-              </Button>
-            </div>
-          </form>
-        </Form>
-      )}
-      {finished ? "Saved Successfully" : ""}
-    </div>
+      <div
+        className="card-wrapper p-9
+    sm:px-11 rounded-[10px] dark:text-white dark:shadow-gray-900"
+      >
+        <div>Question no.{qno + 1}</div>
+        <div>&rarr; {question.question}</div>
+        {finished ? (
+          ""
+        ) : (
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="mt-9 flex w-full gap-9 flex-col"
+            >
+              <FormField
+                control={form.control}
+                name="answer"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-col space-y-1 "
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem
+                              className=" text-dark300_light700"
+                              value="true"
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal text-dark100_light900">
+                            True
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem
+                              className=" text-dark300_light700"
+                              value="false"
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal text-dark100_light900">
+                            False
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="mt-7 flex justify-end">
+                <Button
+                  type="submit"
+                  className="primary-gradient w-fit"
+                  disabled={isSubmitting}
+                  onClick={() => {}}
+                >
+                  {isSubmitting ? "Confirming..." : "Confirm"}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        )}
+        {finished ? "Saved Successfully" : ""}
+      </div>
     </>
   );
 };

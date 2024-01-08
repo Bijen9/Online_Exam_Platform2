@@ -9,7 +9,7 @@ import { getQuestions } from "@/lib/actions/question.action";
 import QuestionCard from "@/components/cards/QuestionCard";
 import PublishTest from "@/components/test/PublishTest";
 
-const TestEditpage = async ({ params, searchParams }) => {
+const TestEditpage = async ({ params, searchParams }: any) => {
   const testId = params.id;
   const clerkId: string = auth().userId!;
 
@@ -85,7 +85,10 @@ const TestEditpage = async ({ params, searchParams }) => {
           className="sm:h3-semibold base-semibold 
                     text-dark200_light900 line-clamp-1 flex-1 mx-2"
         >
-          total questions: {MCQ?.length + TrueFalse?.length + Written?.length}
+          total questions:{" "}
+          {(MCQ?.length ?? 0) +
+            (TrueFalse?.length ?? 0) +
+            (Written?.length ?? 0)}
         </h3>
       </div>
       {MCQ?.map((question: any) => (
@@ -116,7 +119,7 @@ const TestEditpage = async ({ params, searchParams }) => {
           testId={testId}
         />
       ))}
-       <PublishTest test={JSON.stringify(test)} />
+      <PublishTest test={JSON.stringify(test)} />
     </>
   );
 };

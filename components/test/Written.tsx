@@ -53,15 +53,13 @@ const addWrittens = ({ testId }: any) => {
         marks,
         testId: JSON.parse(testId),
       };
-      console.log(writtenData);
+
       await addWritten({ writtenData });
 
       router.push(`/teacher/edit-test/${JSON.parse(testId)}`);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
-
-    console.log(values);
   }
 
   return (
@@ -135,9 +133,6 @@ const addWrittens = ({ testId }: any) => {
               type="submit"
               className="primary-gradient w-fit"
               disabled={isSubmitting}
-              onClick={() => {
-                console.log("button clicked");
-              }}
             >
               {isSubmitting ? "Saving..." : "Save"}
             </Button>

@@ -18,15 +18,16 @@ const publishTest = ({ test }: any) => {
   return (
     <div>
       <Button
-          className="h4-bold    primary-gradient  
+        className="h4-bold    primary-gradient  
               text-dark400_light500 rounded-md border-none my-2 px-4 py-2 uppercase "
         onClick={async () => {
           const testData = {
             published: false,
             status: false,
           };
+
           await updateTest({ testId: testId, testData });
-          // router.push(`/teacher/edit-test`);
+          router.push(`/teacher/edit-test`);
         }}
       >
         Publish

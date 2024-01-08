@@ -93,8 +93,7 @@ export async function getFullResult(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -176,7 +175,6 @@ export async function getResultMarks(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }

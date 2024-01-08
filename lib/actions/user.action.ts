@@ -9,17 +9,13 @@ export async function getUserById(params: any) {
   try {
     connectTodatabase();
     const { userId } = params;
-    console.log("THis is from backend", userId);
     const user = await User.findOne({ clerkId: userId });
     if (user) {
-      // console.log("user found");
       return user;
     }
-    console.log("user not found");
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -29,14 +25,12 @@ export async function getUserId(params: any) {
     const { clerkId } = params;
     const user = await User.findOne({ clerkId });
     if (user) {
-      // console.log("user found");
       return user._id;
     }
-    console.log("user not found");
+
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -50,8 +44,7 @@ export async function searchUserByName(params: any) {
     });
     return user;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -65,8 +58,7 @@ export async function getUserByEmail(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -83,8 +75,7 @@ export async function getUsersByOrganization(params: any) {
     }
     return null;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -94,8 +85,7 @@ export async function creteUser(userData: any) {
     const newUser = await User.create(userData);
     return newUser;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -113,8 +103,7 @@ export async function updateUser(userData: any) {
     revalidatePath(path);
     return updatedUser;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -149,7 +138,6 @@ export async function deleteUser(userData: any) {
     const deletedUser = await User.findByIdAndDelete(user._id);
     return deletedUser;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }

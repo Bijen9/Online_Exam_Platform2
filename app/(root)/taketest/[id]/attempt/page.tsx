@@ -5,7 +5,7 @@ import { getUserId } from "@/lib/actions/user.action";
 import AttemptTF from "@/components/test/attemptTF";
 import { getQuestions } from "@/lib/actions/question.action";
 
-const teacherPage = async ({ params, searchParams }) => {
+const teacherPage = async ({ params, searchParams }: any) => {
   const { id } = params;
   const clerkId: string = auth().userId!;
 
@@ -17,15 +17,17 @@ const teacherPage = async ({ params, searchParams }) => {
     userId: userId,
   });
 
-  const { mcq, trueFalse, written } = questionAll;
+  const { mcq, trueFalse, written } = questionAll as any;
 
   return (
     <>
-      
-        <div >
+      <div>
         <h1 className="h1-bold text-dark100_light900">{test.name}</h1>
-        <h4 className="text-sm text-neutral-500"> your progress will be saved automatically after pressing Confirm</h4>
-        {trueFalse?.map((question, index) => {
+        <h4 className="text-sm text-neutral-500">
+          {" "}
+          your progress will be saved automatically after pressing Confirm
+        </h4>
+        {trueFalse?.map((question: any, index: any) => {
           return (
             <AttemptTF
               userId={JSON.stringify(userId)}
@@ -35,8 +37,7 @@ const teacherPage = async ({ params, searchParams }) => {
             />
           );
         })}
-        </div>
-      
+      </div>
     </>
   );
 };

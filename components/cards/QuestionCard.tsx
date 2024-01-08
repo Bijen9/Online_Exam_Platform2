@@ -55,7 +55,7 @@ const QuestionCard = ({ id, question, answer, type, testId }: any) => {
             onClick={async () => {
               if (type === "MCQ") {
                 await deleteMcq({ mcqId: JSON.parse(id) });
-                console.log(JSON.parse(id));
+
                 // router.push(`/teacher/edit-test/${testId}`);
                 router.refresh();
               } else if (type === "True-False") {

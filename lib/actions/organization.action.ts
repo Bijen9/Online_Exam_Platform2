@@ -13,8 +13,7 @@ export default async function createOrganization(params: any) {
     });
     return organization;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -25,8 +24,7 @@ export async function getOrganization(params: any) {
     const organization = await Organization.findById(organizationId);
     return organization;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -36,8 +34,7 @@ export async function getAllOrganization(params: any) {
     const organization = await Organization.find();
     return organization;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }
 
@@ -51,7 +48,6 @@ export async function searchOrganization(params: any) {
     });
     return organization;
   } catch (error) {
-    console.log("error occured");
-    console.log(error);
+    throw error;
   }
 }

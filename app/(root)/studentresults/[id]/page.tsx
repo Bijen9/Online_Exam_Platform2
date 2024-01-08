@@ -7,7 +7,7 @@ import { getUserId } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 import { getResultMarks } from "@/lib/actions/result.action";
 
-const ResultDetai = async ({ params, searchParams }) => {
+const ResultDetail = async ({ params, searchParams }: any) => {
   const { id } = params;
   const test = await getTestById({ testId: id });
   const clerkId: string = auth().userId!;
@@ -18,7 +18,6 @@ const ResultDetai = async ({ params, searchParams }) => {
     userId,
     testId: id,
   });
-  console.log(results);
   return (
     <div>
       <div className="mt-10 flex w-full flex-col justify-between gap-6 sm:flex-column sm:item-center">
@@ -72,4 +71,4 @@ const ResultDetai = async ({ params, searchParams }) => {
   );
 };
 
-export default ResultDetai;
+export default ResultDetail;
