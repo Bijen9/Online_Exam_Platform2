@@ -55,7 +55,6 @@ const AddsTrueFalse = ({ testId }: any) => {
       };
 
       await addTrueFalse({ trueFalseData });
-
       router.push(`/teacher/edit-test/${JSON.parse(testId)}`);
     } catch (error) {
       throw error;

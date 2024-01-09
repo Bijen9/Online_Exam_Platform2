@@ -1,6 +1,4 @@
 import React from "react";
-import Link from "next/link";
-import RenderTag from "@/components/shared/RenderTag";
 import Metric from "../shared/Metric";
 import { getTimestamp } from "@/lib/utils";
 
@@ -35,13 +33,6 @@ const TestCard = async ({
         sm:flex-row"
       >
         <div>
-          <span
-            className="subtle-regular text-dark-400_light700
-                line-clamp-1 flex sm:hidden"
-          >
-            {getTimestamp(createdAt)}
-          </span>
-
           <h3
             className="sm:h3-semibold base-semibold 
                     text-dark200_light900 line-clamp-1 flex-1"
@@ -55,22 +46,20 @@ const TestCard = async ({
         <Metric
           imgurl="/assets/icons/avatar.svg"
           alt="user"
-          value={` Starts ${new Date(
-            startTime
-          ).toLocaleDateString()}, Duration ${diffDuration.asHours()} hours
+          value={` Starts ${startDate.format("MMM Do YYYY, h:mm:ss a")}
           `}
-          title={` - created ${getTimestamp(createdAt)}`}
+          title={` - Duration ${diffDuration.asMinutes()} Minutes`}
           isAuthor
           textStyles="body-medium text-dark400_light700"
         />
 
-        {/* <Metric
+        <Metric
           imgurl="/assets/icons/message.svg"
           alt="message"
           value={count!.total}
           title=" Question"
           textStyles="small-medium text-dark400_light800"
-        /> */}
+        />
       </div>
     </div>
   );

@@ -8,6 +8,10 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import DateTimePicker from "react-datetime-picker";
+import "react-datetime-picker/dist/DateTimePicker.css";
+import "react-calendar/dist/Calendar.css";
+import "react-clock/dist/Clock.css";
 
 import {
   Popover,
@@ -117,7 +121,17 @@ const CreateTestPage = ({ userId }: props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col text-dark100_light900">
               <FormLabel>Test time from</FormLabel>
-              <Popover>
+              <FormControl>
+                <DateTimePicker
+                  onChange={field.onChange}
+                  value={field.value}
+                  className={cn(
+                    "w-[240px] pl-3 text-left font-normal",
+                    !field.value && "text-muted-foreground"
+                  )}
+                />
+              </FormControl>
+              {/* <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
@@ -148,7 +162,7 @@ const CreateTestPage = ({ userId }: props) => {
                     className="text-dark100_light900 bg-white dark:bg-zinc-950"
                   />
                 </PopoverContent>
-              </Popover>
+              </Popover> */}
               <FormDescription>
                 Test will be open to students at this time.
               </FormDescription>
@@ -162,7 +176,18 @@ const CreateTestPage = ({ userId }: props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col text-dark100_light900">
               <FormLabel>Test time until</FormLabel>
-              <Popover>
+              <FormControl>
+                <DateTimePicker
+                  onChange={field.onChange}
+                  value={field.value}
+                  className={cn(
+                    "w-[240px] pl-3 text-left font-normal",
+                    !field.value && "text-muted-foreground"
+                  )}
+                />
+              </FormControl>
+
+              {/* <Popover>
                 <PopoverTrigger asChild>
                   <FormControl className="text-dark100_light900">
                     <Button
@@ -193,7 +218,7 @@ const CreateTestPage = ({ userId }: props) => {
                     className="text-dark100_light900 bg-white dark:bg-zinc-950"
                   />
                 </PopoverContent>
-              </Popover>
+              </Popover> */}
               <FormDescription>
                 Test will be Colsed to students at this date.
               </FormDescription>
