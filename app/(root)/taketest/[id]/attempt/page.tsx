@@ -3,6 +3,8 @@ import { getTestById, submitTest } from "@/lib/actions/test.action";
 import { auth } from "@clerk/nextjs";
 import { getUserId } from "@/lib/actions/user.action";
 import AttemptTF from "@/components/test/attemptTF";
+import AttemptMCQ from "@/components/test/attemptMCQ";
+import AttemptWritten from "@/components/test/attemptWritten";
 import { getQuestions } from "@/lib/actions/question.action";
 
 const teacherPage = async ({ params, searchParams }: any) => {
@@ -27,9 +29,32 @@ const teacherPage = async ({ params, searchParams }: any) => {
           {" "}
           your progress will be saved automatically after pressing Confirm
         </h4>
+
         {trueFalse?.map((question: any, index: any) => {
           return (
             <AttemptTF
+              userId={JSON.stringify(userId)}
+              questionn={JSON.stringify(question)}
+              qno={index}
+              key={index}
+            />
+          );
+        })}
+
+        {mcq?.map((question: any, index: any) => {
+          return (
+            <AttemptMCQ
+              userId={JSON.stringify(userId)}
+              questionn={JSON.stringify(question)}
+              qno={index}
+              key={index}
+            />
+          );
+        })}
+
+        {written?.map((question: any, index: any) => {
+          return (
+            <AttemptWritten
               userId={JSON.stringify(userId)}
               questionn={JSON.stringify(question)}
               qno={index}

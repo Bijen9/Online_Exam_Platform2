@@ -196,12 +196,17 @@ export async function getQuestionCountInTest(params: any) {
 export async function updateTest(params: any) {
   try {
     connectTodatabase();
-    const { testData, testId } = params;
+    const { testData, test } = params;
+    const parsedTest = JSON.parse(test);
+    console.log(testData, parsedTest._id);
+    const testnew = await Test.findByIdAndUpdate(
+      parsedTest._id,
 
-    const test = await Test.findByIdAndUpdate(testId, {
       testData,
-    });
-    return test;
+
+      { new: true }
+    );
+    return testnew;
   } catch (error) {
     throw error;
   }
@@ -248,7 +253,7 @@ export async function submitTest(params: any) {
     if (user) {
       const test = await Test.findById(testId);
       if (test) {
-        test.completedBy.push(userId);
+        test.CompletedBy.push(userId);
         await test.save();
         user.TestAttempted.push(testId);
         await User.updateOne(

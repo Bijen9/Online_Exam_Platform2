@@ -24,6 +24,14 @@ export const attendTrueFalseSchema = z.object({
   answer: z.enum(["true", "false"]),
 });
 
+export const attendMCQsSchema = z.object({
+  answer: z.enum(["0", "1", "2", "3"]),
+});
+
+export const attendWrittenSchema = z.object({
+  answer: z.string(),
+});
+
 export const createMCQsSchema = z.object({
   question: z.string().min(2).max(300),
   option1: z.string(),

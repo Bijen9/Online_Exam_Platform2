@@ -142,7 +142,7 @@ const CreateTestPage = ({ userId }: props) => {
                     selected={field.value}
                     onSelect={field.onChange}
                     disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
+                      date < new Date() || date > new Date("2025-01-01")
                     }
                     initialFocus
                     className="text-dark100_light900 bg-white dark:bg-zinc-950"
@@ -187,7 +187,7 @@ const CreateTestPage = ({ userId }: props) => {
                     selected={field.value}
                     onSelect={field.onChange}
                     disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
+                      date < new Date() || date > new Date("2025-01-01")
                     }
                     initialFocus
                     className="text-dark100_light900 bg-white dark:bg-zinc-950"

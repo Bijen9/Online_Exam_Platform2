@@ -13,8 +13,9 @@ import { updateTest } from "@/lib/actions/test.action";
 
 const PublishTest = ({ test }: any) => {
   const router = useRouter();
-  const Test = JSON.parse(test);
-  const testId = Test.id;
+  // const Test = JSON.parse(test);
+  // const testId = Test.id;
+
   return (
     <div>
       <Button
@@ -25,8 +26,7 @@ const PublishTest = ({ test }: any) => {
             published: false,
             status: false,
           };
-
-          await updateTest({ testId: testId, testData });
+          await updateTest({ test, testData });
           router.push(`/teacher/edit-test`);
         }}
       >
