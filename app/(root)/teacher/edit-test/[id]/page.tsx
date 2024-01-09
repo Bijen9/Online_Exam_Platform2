@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { getQuestions } from "@/lib/actions/question.action";
 import QuestionCard from "@/components/cards/QuestionCard";
-import PublishTest from "@/components/test/PublishTest";
+import PublishTest from "@/components/manual/buttons/PublishTest";
 
 const TestEditpage = async ({ params, searchParams }: any) => {
   const testId = params.id;

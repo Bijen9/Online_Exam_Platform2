@@ -1,14 +1,7 @@
 "use client";
 import React from "react";
-import { Button } from "../ui/button";
-import {
-  deleteMcq,
-  deleteTrueFalse,
-  deleteWritten,
-} from "@/lib/actions/question.action";
-import Metric from "../shared/Metric";
-import { Badge } from "../ui/badge";
-import { useRouter, usePathname } from "next/navigation";
+import { Button } from "../../ui/button";
+import { useRouter } from "next/navigation";
 import { updateTest } from "@/lib/actions/test.action";
 
 const PublishTest = ({ test }: any) => {
@@ -25,9 +18,10 @@ const PublishTest = ({ test }: any) => {
           const testData = {
             published: false,
             status: false,
+            result: true,
           };
           await updateTest({ test, testData });
-          router.push(`/teacher/edit-test`);
+          router.push(`/teacher/mark-test`);
         }}
       >
         Publish

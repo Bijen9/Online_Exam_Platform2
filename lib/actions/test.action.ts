@@ -87,6 +87,7 @@ export async function getIssuedTest(params: any) {
     const issuedTest = await Test.find({
       status: false,
       published: false,
+      result: false,
     });
     return issuedTest;
   } catch (error) {
@@ -165,6 +166,66 @@ export async function getEditTest(params: any) {
   }
 }
 
+// get tests which results are published and the user must have been issued to the test
+export async function getResultPublishedTest(params: any) {
+  try {
+    connectTodatabase();
+    const { userId } = params;
+    const user = await User.findById(userId);
+    if (user) {
+      const publishedTest = await Test.find({
+        _id: { $in: user.TestIssued },
+        result: true,
+      });
+      return publishedTest;
+    }
+    return null;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getMarkTest(params: any) {
+  try {
+    connectTodatabase();
+    const { userId } = params;
+    const user = await User.findById(userId);
+    if (user) {
+      let markableTest = await Test.find({
+        CreatedBy: userId,
+        published: false,
+        status: false,
+        result: false,
+      });
+      const markableTest1: any = [];
+      // see if the tests have any written type test.
+      // if they have then check if the written test has any answers
+      // if they have then the test is markable
+      await Promise.all(
+        markableTest.map(async (test, index) => {
+          const written = await Written.find({
+            testId: test._id,
+          });
+          if (written.length > 0) {
+            const wanswer = await Wanswer.find({
+              writtenId: written[0]._id,
+            });
+            if (wanswer.length > 0) {
+              markableTest1.push(test);
+            }
+          }
+          return null;
+        })
+      );
+
+      return markableTest1;
+    }
+    return [];
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getQuestionCountInTest(params: any) {
   try {
     connectTodatabase();
@@ -198,7 +259,6 @@ export async function updateTest(params: any) {
     connectTodatabase();
     const { testData, test } = params;
     const parsedTest = JSON.parse(test);
-    console.log(testData, parsedTest._id);
     const testnew = await Test.findByIdAndUpdate(
       parsedTest._id,
 
@@ -266,6 +326,30 @@ export async function submitTest(params: any) {
           { $push: { TestAttempted: testId } }
         );
         return test;
+      }
+      return null;
+    }
+    return null;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getUserAttemptCheck(params: any) {
+  try {
+    connectTodatabase();
+    const { userId, testId } = params;
+    const user = await User.findById(userId);
+    if (user) {
+      const test = await Test.findById(testId);
+      if (test) {
+        const check = test.CompletedBy.find((id: any) => {
+          return JSON.stringify(id) === JSON.stringify(userId);
+        });
+        if (check) {
+          return true;
+        }
+        return false;
       }
       return null;
     }

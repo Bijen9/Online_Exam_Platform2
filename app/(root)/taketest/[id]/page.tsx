@@ -1,6 +1,6 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import Link from "next/link";
-import { getTestById } from "@/lib/actions/test.action";
+import { getTestById, getUserAttemptCheck } from "@/lib/actions/test.action";
 import { auth } from "@clerk/nextjs";
 import { getUserId } from "@/lib/actions/user.action";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,10 @@ const teacherPage = async ({ params, searchParams }: any) => {
   const clerkId: string = auth().userId!;
   const userId = await getUserId({ clerkId });
   const test = await getTestById({ testId: id });
+  const userAttemptCheck = await getUserAttemptCheck({
+    testId: test._id,
+    userId,
+  });
 
   return (
     <>
@@ -30,10 +34,20 @@ const teacherPage = async ({ params, searchParams }: any) => {
           <div>Ending Date: {getTimestamp(test.endTime)}</div>
         </div>
       </div>
-
-      <Link href={`/taketest/${test._id}/attempt`}>
-        <Button className="primary-gradient mt-5">Enter Test</Button>
-      </Link>
+      {userAttemptCheck === false ? (
+        <Link href={`/taketest/${test._id}/attempt`}>
+          <Button className="primary-gradient mt-5">Enter Test</Button>
+        </Link>
+      ) : (
+        <div className="mt-5">
+          <div className="text-dark100_light900">
+            You have already attempted this test.
+          </div>
+          <Link href={`/`}>
+            <Button className="primary-gradient mt-5">Go to Tests</Button>
+          </Link>
+        </div>
+      )}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { markWritten } from "./actions/question.action";
 
 export const createTestSchema = z.object({
   name: z.string().min(2).max(100),
@@ -30,6 +31,10 @@ export const attendMCQsSchema = z.object({
 
 export const attendWrittenSchema = z.object({
   answer: z.string(),
+});
+
+export const markWrittenSchema = z.object({
+  answer: z.enum(["true", "false"]),
 });
 
 export const createMCQsSchema = z.object({

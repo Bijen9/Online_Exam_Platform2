@@ -109,51 +109,50 @@ export async function getResultMarks(params: any) {
       });
       if (testAttempted) {
         //   user has already taken the test
+        const totalMarks = { total: 0 };
 
-        //
-        //counting total number of test questions
-        const totalMCQsCount = await MCQ.find({ testId }).countDocuments();
-        const totalTFsCount = await True_False.find({
+        const TFAnswers: ITrue_False[] = await True_False.find({
           testId,
-        }).countDocuments();
-        const totalWrittenCount = await Written.find({
-          testId,
-        }).countDocuments();
-        //
-        //
-        // check all MCQ which has the following testId and userID inside correctAnswers
-        const correctMCQAnswers: IMCQ[] = await MCQ.find({
-          testId,
-          correctAnswers: { $elemMatch: { userId } },
         });
-        const MCQsMarks = correctMCQAnswers.length * correctMCQAnswers[0].marks;
 
-        // check all the true false questions which has the following testId and userID inside correctAnswers
-        const correctTFAnswers: ITrue_False[] = await True_False.find({
-          testId,
-          correctAnswers: { $elemMatch: { userId } },
+        TFAnswers.forEach((TF) => {
+          const correctAnswer = TF.CorrectStudents.find((id) => {
+            if (JSON.stringify(id) === JSON.stringify(userId)) {
+              totalMarks.total += TF.marks;
+            }
+          });
         });
-        const TFsMarks = correctTFAnswers.length * correctTFAnswers[0].marks;
 
-        // check all the written questions which has the following testId and userID inside correctAnswers
-        const correctWrittenAnswers: IWritten[] = await Written.find({
+        const MCQAnswers: IMCQ[] = await MCQ.find({
           testId,
-          correctAnswers: { $elemMatch: { userId } },
         });
-        const writtenMarks =
-          correctWrittenAnswers.length * correctWrittenAnswers[0].marks;
 
-        const totalMarks = MCQsMarks + TFsMarks + writtenMarks;
+        MCQAnswers.forEach((MCQ) => {
+          const correctAnswer = MCQ.CorrectStudents.find((id) => {
+            if (JSON.stringify(id) === JSON.stringify(userId)) {
+              totalMarks.total += MCQ.marks;
+            }
+          });
+        });
+
+        const WrittenAnswers: IWritten[] = await Written.find({
+          testId,
+        });
+
+        WrittenAnswers.forEach((Written) => {
+          const correctAnswer = Written.CorrectStudents.find((id) => {
+            if (JSON.stringify(id) === JSON.stringify(userId)) {
+              totalMarks.total += Written.marks;
+            }
+          });
+        });
 
         return {
           status: "success",
-          totalMCQsCount,
-          totalTFsCount,
-          totalWrittenCount,
-          correctMCQAnswers,
-          correctTFAnswers,
-          correctWrittenAnswers,
-          totalMarks,
+          MCQAnswers,
+          TFAnswers,
+          WrittenAnswers,
+          totalMarks: totalMarks.total,
         };
 
         //
@@ -174,6 +173,20 @@ export async function getResultMarks(params: any) {
       }
     }
     return null;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getUserAnswer(params: any) {
+  try {
+    connectTodatabase();
+    const { StudentId, QuestionId } = params;
+    const userAnswer = await Wanswer.findOne({
+      StudentId,
+      QuestionId,
+    });
+    return userAnswer?.answer ? userAnswer.answer : "no answer";
   } catch (error) {
     throw error;
   }

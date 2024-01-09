@@ -5,6 +5,7 @@ export interface IWanswer extends Document {
   QuestionId: Schema.Types.ObjectId;
   comment: string;
   answer: string;
+  marked: boolean;
   createdAt: Date;
 }
 
@@ -13,6 +14,7 @@ const WanswerSchema = new Schema({
   QuestionId: { type: Schema.Types.ObjectId, ref: "Wquestion" },
   answer: { type: String, required: true },
   comment: { type: String },
+  marked: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 });
 

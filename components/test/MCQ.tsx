@@ -3,11 +3,8 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import {
@@ -22,17 +19,16 @@ import {
 interface props {
   testId: string;
 }
-import { createMCQsSchema as createMCQsSchema } from "@/lib/validation";
-import { useRouter, usePathname } from "next/navigation";
+import { createMCQsSchema } from "@/lib/validation";
 import { addMcq } from "@/lib/actions/question.action";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter, usePathname } from "next/navigation";
 
 const AddMCQ = ({ testId }: any) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [numberOfOptions, setnumberOfOptions] = React.useState([3]);
   const router = useRouter();
-  const pathname = usePathname();
 
   const form = useForm<z.infer<typeof createMCQsSchema>>({
     resolver: zodResolver(createMCQsSchema),
@@ -52,21 +48,19 @@ const AddMCQ = ({ testId }: any) => {
     try {
       const { question, option1, option2, option3, option4, answer, marks } =
         values;
-      const options = [];
-      options.push(option1, option2, option3, option4);
+      const options = [option1, option2, option3, option4];
 
-      const mcqData = {
+      const mcqData: any = {
         question,
         answer: parseInt(answer),
-        // how to pass options array to mongodb
-        options: options,
+        options,
         marks,
         testId: JSON.parse(testId),
       };
 
       await addMcq({ mcqData });
 
-      // router.push(`/teacher/edit-test/${JSON.parse(testId)}`);
+      router.push(`/teacher/edit-test/${JSON.parse(testId)}`);
     } catch (error) {
       throw error;
     }

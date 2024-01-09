@@ -1,7 +1,9 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import TestCard from "@/components/cards/TestCard";
+import ResultTF from "@/components/cards/ResultTF";
+import ResultMCQ from "@/components/cards/ResultMCQ";
+import ResultWritten from "@/components/cards/ResultWritten";
 import { getEditTest, getTestById } from "@/lib/actions/test.action";
 import { getUserId } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
@@ -21,46 +23,44 @@ const ResultDetail = async ({ params, searchParams }: any) => {
   return (
     <div>
       <div className="mt-10 flex w-full flex-col justify-between gap-6 sm:flex-column sm:item-center">
-        <h1 className="h1-bold text-dark100_light900">Results</h1>
+        <h3 className="h1-bold text-dark100_light900">Results</h3>
         {results && results.status == "success" ? (
           <div>
             <div className="flex flex-row justify-between">
-              <h1 className="h1-bold text-dark100_light900">Results</h1>
-              <h1 className="h1-bold text-dark100_light900">
+              <h1 className="h2-bold text-dark100_light900"></h1>
+              <h1 className="h3-bold text-dark100_light900">
                 Total Marks: {results.totalMarks}
               </h1>
             </div>
-            {results.correctMCQAnswers!.map((result: any, index: any) => (
-              <div className="flex flex-row justify-between" key={index}>
-                <h1 className="h1-bold text-dark100_light900">
-                  {result.question}
-                </h1>
-                <h1 className="h1-bold text-dark100_light900">
-                  Marks: {result.marks}
-                </h1>
-              </div>
+            <br />
+            <h3 className="h3-bold text-dark100_light900">True False(s)</h3>
+            {results.TFAnswers!.map((result: any, index: any) => (
+              <ResultTF
+                result={result}
+                index={index}
+                key={index}
+                userId={userId}
+              />
             ))}
-
-            {results.correctTFAnswers!.map((result: any, index: any) => (
-              <div className="flex flex-row justify-between" key={index}>
-                <h1 className="h1-bold text-dark100_light900">
-                  {result.question}
-                </h1>
-                <h1 className="h1-bold text-dark100_light900">
-                  Marks: {result.marks}
-                </h1>
-              </div>
+            <br />
+            <h3 className="h3-bold text-dark100_light900">MCQ(s)</h3>
+            {results.MCQAnswers!.map((result: any, index: any) => (
+              <ResultMCQ
+                result={result}
+                index={index}
+                key={index}
+                userId={userId}
+              />
             ))}
-
-            {results.correctWrittenAnswers!.map((result: any, index: any) => (
-              <div className="flex flex-row justify-between" key={index}>
-                <h1 className="h1-bold text-dark100_light900">
-                  {result.question}
-                </h1>
-                <h1 className="h1-bold text-dark100_light900">
-                  Marks: {result.marks}
-                </h1>
-              </div>
+            <br />
+            <h3 className="h3-bold text-dark100_light900">Written(s)</h3>
+            {results.WrittenAnswers!.map((result: any, index: any) => (
+              <ResultWritten
+                result={result}
+                index={index}
+                key={index}
+                userId={userId}
+              />
             ))}
           </div>
         ) : (

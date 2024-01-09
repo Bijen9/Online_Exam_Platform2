@@ -8,6 +8,7 @@ export interface ITest extends Document {
   endTime: Date;
   status: boolean;
   published: boolean;
+  result: boolean;
   completedBy: Schema.Types.ObjectId[];
   createdAt: Date;
 }
@@ -20,6 +21,7 @@ const TestSchema = new Schema({
   endTime: { type: Date, required: true },
   status: { type: Boolean, default: true },
   published: { type: Boolean, default: false },
+  result: { type: Boolean, default: false },
   CompletedBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
   createdAt: { type: Date, default: Date.now },
 });

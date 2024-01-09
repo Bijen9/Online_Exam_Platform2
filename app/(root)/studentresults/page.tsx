@@ -2,7 +2,7 @@ import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import TestCard from "@/components/cards/TestCard";
-import { getEditTest } from "@/lib/actions/test.action";
+import { getResultPublishedTest } from "@/lib/actions/test.action";
 import { getUserId } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 
@@ -10,7 +10,7 @@ export default async function Result() {
   const clerkId: string = auth().userId!;
 
   const userId = await getUserId({ clerkId });
-  const tests: any = await getEditTest({ userId });
+  const tests: any = await getResultPublishedTest({ userId });
 
   return (
     <>

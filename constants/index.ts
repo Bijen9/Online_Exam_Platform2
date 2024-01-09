@@ -13,7 +13,7 @@ export const sidebarLinksStudent: SidebarLink[] = [
 
   {
     imgURL: "/assets/icons/star.svg",
-    route: "/studentresult",
+    route: "/studentresults",
     label: "Result",
   },
   {

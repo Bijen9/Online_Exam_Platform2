@@ -4,7 +4,7 @@ import Test, { ITest } from "@/database/test.model";
 import { connectTodatabase } from "../mongoose";
 import MCQ from "@/database/mcq.model";
 import True_False from "@/database/true_false.model";
-import Written from "@/database/written.model";
+import Written, { IWritten } from "@/database/written.model";
 import Wanswer from "@/database/wanswer.model";
 import User from "@/database/user.model";
 
@@ -138,23 +138,28 @@ export async function attendWritten(params: any) {
 export async function markWritten(params: any) {
   try {
     connectTodatabase();
-    const { writtenId, userId, studentId, decision } = params;
-
-    const written = await Written.findById(writtenId);
+    const { QuestionId, StudentId, decision, answerId } = params;
+    // const _id = JSON.parse(questionId);
+    const written: any = await Written.findById(QuestionId);
     const testId = written.testId;
-    const requestedBy = await User.findById(userId);
-    const authorised = requestedBy.TestIssued.find((test: ITest) => {
-      return test.toString() === testId;
-    });
-    if (!authorised) {
-      return { status: "not authorized" };
-    }
+    // const requestedBy = await User.findById(userId);
+    // const authorised = requestedBy.TestIssued.find((test: ITest) => {
+    //   return test.toString() === testId;
+    // });
+    // if (!authorised) {
+    //   return { status: "not authorized" };
+    // }
     // if if the answer is correct
     if (decision === true) {
-      // add the user to the correct students
-      written.CorrectStudents.push(studentId);
+      written.CorrectStudents.push(StudentId);
+      written.marked = true;
       written.save();
     }
+    const markedWanswer = await Wanswer.findOneAndUpdate(
+      { _id: answerId },
+      { marked: true },
+      { new: true }
+    );
   } catch (error) {
     throw error;
   }
@@ -211,6 +216,39 @@ export async function getQuestions(params: any) {
       element.CorrectStudents = null;
     });
     return { mcq, trueFalse, written };
+  } catch (error) {
+    throw error;
+  }
+}
+export async function getMarkableQuestions(params: any) {
+  try {
+    connectTodatabase();
+    const { testId } = params;
+    const written = await Written.find({ testId, marked: false });
+    const allWritten = await Written.find({ testId });
+    if (written.length === 0 && allWritten.length !== 0) {
+      return { written: allWritten, canBePublished: true };
+    }
+    return { written: written, canBePublished: false };
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getMarkableanswer(params: any) {
+  try {
+    connectTodatabase();
+    const { QuestionId } = params;
+    const writtenAnswers = await Wanswer.find({ QuestionId, marked: false });
+    const allWrittenAnswers = await Wanswer.find({ QuestionId });
+    if (writtenAnswers.length === 0 && allWrittenAnswers.length !== 0) {
+      await Written.findByIdAndUpdate(
+        QuestionId,
+        { marked: true },
+        { new: true }
+      );
+    }
+    return writtenAnswers;
   } catch (error) {
     throw error;
   }
