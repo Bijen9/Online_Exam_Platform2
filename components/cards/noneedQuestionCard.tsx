@@ -71,21 +71,6 @@ const QuestionCard = ({
           isAuthor
           textStyles="body-medium text-dark400_light700"
         />
-
-        {/* <Metric
-                imgurl="/assets/icons/like.svg"
-                alt="Upvotes"
-                value= { upvotes }
-                title=" Votes"
-                textStyles= "small-medium text-dark400_light800"
-            />
-            <Metric
-                imgurl="/assets/icons/message.svg"
-                alt="message"
-                value= { answers.length}
-                title=" Answers"
-                textStyles= "small-medium text-dark400_light800"
-            /> */}
       </div>
     </div>
   );

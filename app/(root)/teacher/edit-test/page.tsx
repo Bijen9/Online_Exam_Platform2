@@ -27,6 +27,7 @@ export default async function EditTest() {
           otherClasses="flex-1"
         />
       </div>
+      <br />
       {tests!.map((test: any) => (
         <Link href={`/teacher/edit-test/${test._id}`} key={test._id}>
           <TestCard

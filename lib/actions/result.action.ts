@@ -191,3 +191,39 @@ export async function getUserAnswer(params: any) {
     throw error;
   }
 }
+
+export async function getTotalPoints(params: any) {
+  try {
+    connectTodatabase();
+    const { userId, testId } = params;
+    const totalMarks = { total: 0 };
+
+    const TFAnswers: ITrue_False[] = await True_False.find({
+      testId,
+    });
+
+    TFAnswers.forEach((TF) => {
+      totalMarks.total += TF.marks;
+    });
+
+    const MCQAnswers: IMCQ[] = await MCQ.find({
+      testId,
+    });
+
+    MCQAnswers.forEach((MCQ) => {
+      totalMarks.total += MCQ.marks;
+    });
+
+    const WrittenAnswers: IWritten[] = await Written.find({
+      testId,
+    });
+
+    WrittenAnswers.forEach((Written) => {
+      totalMarks.total += Written.marks;
+    });
+
+    return totalMarks.total;
+  } catch (error) {
+    throw error;
+  }
+}

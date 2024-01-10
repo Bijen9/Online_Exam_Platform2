@@ -14,7 +14,7 @@ const QuestionCard = ({ id, question, answer, type, testId }: any) => {
   return (
     <div
       className="card-wrapper p-9
-    sm:px-11 rounded-[10px] "
+    sm:px-11 rounded-[10px] mt-2 "
     >
       <div
         className="flex flex-col-reverse items-start justify-between gap-5
@@ -30,14 +30,7 @@ const QuestionCard = ({ id, question, answer, type, testId }: any) => {
         </div>
       </div>
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
-        <Metric
-          imgurl="/assets/icons/avatar.svg"
-          alt="user"
-          value={answer}
-          title=""
-          isAuthor
-          textStyles="body-medium text-dark400_light700"
-        />
+        <div></div>
         <div className="flex flex-row">
           <Metric
             imgurl="/assets/icons/message.svg"

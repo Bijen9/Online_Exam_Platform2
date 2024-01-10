@@ -8,6 +8,7 @@ import Link from "next/link";
 import { getQuestions } from "@/lib/actions/question.action";
 import QuestionCard from "@/components/cards/QuestionCard";
 import PublishTest from "@/components/manual/buttons/PublishTest";
+import { getTotalPoints } from "@/lib/actions/result.action";
 
 const TestEditpage = async ({ params, searchParams }: any) => {
   const testId = params.id;
@@ -16,6 +17,8 @@ const TestEditpage = async ({ params, searchParams }: any) => {
   const userId = await getUserId({ clerkId });
   const test: ITest = await getTestById({ userId, testId });
   const questions = await getQuestions({ testId, userId });
+  const totalPoints = await getTotalPoints({ testId, userId });
+
   const MCQ = questions?.mcq;
   const TrueFalse = questions?.trueFalse;
   const Written = questions?.written;
@@ -23,9 +26,12 @@ const TestEditpage = async ({ params, searchParams }: any) => {
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">{test.name}</h1>
+      <br />
       <h2 className="h2 text-dark100_light900">Include Students for Test</h2>
-      <>this part is to be done later</>
-
+      <h2 className="h2 text-dark100_light900">
+        this part is to be done later
+      </h2>
+      <br />
       <div
         className="card-wrapper p-9
     sm:px-11 rounded-[10px]"
@@ -43,7 +49,6 @@ const TestEditpage = async ({ params, searchParams }: any) => {
             </h3>
           </div>
         </div>
-
         <div className="mt-3.5 flex flex-wrap gap-2">
           <Link
             href={`/teacher/edit-test/${testId}/addMCQ`}
@@ -80,7 +85,8 @@ const TestEditpage = async ({ params, searchParams }: any) => {
           </Link>
         </div>
       </div>
-      <div>
+      <br />
+      <div className="flex-between  w-full flex-wrap gap-3">
         <h3
           className="sm:h3-semibold base-semibold 
                     text-dark200_light900 line-clamp-1 flex-1 mx-2"
@@ -89,6 +95,12 @@ const TestEditpage = async ({ params, searchParams }: any) => {
           {(MCQ?.length ?? 0) +
             (TrueFalse?.length ?? 0) +
             (Written?.length ?? 0)}
+        </h3>
+        <h3
+          className="sm:h3-semibold base-semibold 
+                    text-dark200_light900 line-clamp-1 flex-1 mx-2"
+        >
+          total points: {totalPoints}
         </h3>
       </div>
       {MCQ?.map((question: any) => (
