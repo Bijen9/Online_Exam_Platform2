@@ -40,10 +40,12 @@ const AddsMCQs = ({ questionn, qno, userId }: any) => {
       //   const answerValue = answer === "true" ? true : false;
 
       //  { trueFalseId, userId, answer }
+      const studentAnswer = answer ? answer : "0";
+
       await attendMcq({
         mcqId: question._id,
         userId: JSON.parse(userId),
-        answer: parseInt(answer),
+        answer: parseInt(studentAnswer),
       });
       setIsSubmitting(false);
       setFinished(true);

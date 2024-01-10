@@ -44,7 +44,8 @@ const AddsTrueFalse = ({ questionn, qno, userId }: any) => {
     setIsSubmitting(true);
     try {
       const { answer } = values;
-      const answerValue = answer === "true" ? true : false;
+      const studentsAnswer = answer ? answer : "false";
+      const answerValue = studentsAnswer === "true" ? true : false;
 
       //  { trueFalseId, userId, answer }
       await attendTrueFalse({

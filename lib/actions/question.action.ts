@@ -165,6 +165,34 @@ export async function markWritten(params: any) {
   }
 }
 
+export async function markWrittenForcefully(params: any) {
+  try {
+    connectTodatabase();
+    const { QuestionId, decision } = params;
+    // const _id = JSON.parse(questionId);
+    const written: any = await Written.findById(QuestionId);
+    const testId = written.testId;
+    // const requestedBy = await User.findById(userId);
+    // const authorised = requestedBy.TestIssued.find((test: ITest) => {
+    //   return test.toString() === testId;
+    // });
+    // if (!authorised) {
+    //   return { status: "not authorized" };
+    // }
+    // if if the answer is correct
+    written.marked = true;
+    written.save();
+
+    const markedWanswers = await Wanswer.find({ QuestionId: QuestionId });
+    markedWanswers.forEach(async (markedWanswer: any) => {
+      markedWanswer.marked = true;
+      await markedWanswer.save();
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
 // give comment in written test
 export async function commentWritten(params: any) {
   try {

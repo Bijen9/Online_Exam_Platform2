@@ -1,6 +1,6 @@
 import React from "react";
 import { getTestById } from "@/lib/actions/test.action";
-import { getUserId } from "@/lib/actions/user.action";
+import { getUserId, getAllUsers } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 import { ITest } from "@/database/test.model";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,8 @@ import { getQuestions } from "@/lib/actions/question.action";
 import QuestionCard from "@/components/cards/QuestionCard";
 import PublishTest from "@/components/manual/buttons/PublishTest";
 import { getTotalPoints } from "@/lib/actions/result.action";
+import UserDropdown from "@/components/manual/dropdown/users";
+import { IUser } from "@/database/user.model";
 
 const TestEditpage = async ({ params, searchParams }: any) => {
   const testId = params.id;
@@ -22,15 +24,17 @@ const TestEditpage = async ({ params, searchParams }: any) => {
   const MCQ = questions?.mcq;
   const TrueFalse = questions?.trueFalse;
   const Written = questions?.written;
+  const allUsers: IUser[] = await getAllUsers();
 
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">{test.name}</h1>
       <br />
       <h2 className="h2 text-dark100_light900">Include Students for Test</h2>
-      <h2 className="h2 text-dark100_light900">
-        this part is to be done later
-      </h2>
+      <UserDropdown
+        allUsers={JSON.stringify(allUsers)}
+        testId={JSON.stringify(testId)}
+      />
       <br />
       <div
         className="card-wrapper p-9

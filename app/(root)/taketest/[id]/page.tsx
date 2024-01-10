@@ -5,6 +5,7 @@ import { auth } from "@clerk/nextjs";
 import { getUserId } from "@/lib/actions/user.action";
 import { Button } from "@/components/ui/button";
 import { getTimestamp } from "@/lib/utils";
+import moment from "moment";
 
 const teacherPage = async ({ params, searchParams }: any) => {
   const { id } = params;
@@ -15,7 +16,10 @@ const teacherPage = async ({ params, searchParams }: any) => {
     testId: test._id,
     userId,
   });
-
+  const startDate = moment(test.startTime);
+  const timeEnd = moment(test.endTime);
+  const diff = timeEnd.diff(startDate);
+  const diffDuration = moment.duration(diff);
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">
@@ -26,12 +30,12 @@ const teacherPage = async ({ params, searchParams }: any) => {
         className="card-wrapper p-9
     sm:px-11 rounded-[10px] dark:text-white dark:shadow-gray-900"
       >
-        <div>{test.name}</div>
+        <div className="h2-bold">{test.name}</div>
         <div>{test.description}</div>
 
         <div className="mt-5">
-          <div>Started Date: {getTimestamp(test.startTime)}</div>
-          <div>Ending Date: {getTimestamp(test.endTime)}</div>
+          <div>Started Date: {startDate.format("MMM Do YYYY, h:mm:ss a")}</div>
+          <div>Duration: {diffDuration.asMinutes()} Minutes</div>
         </div>
       </div>
       {userAttemptCheck === false ? (

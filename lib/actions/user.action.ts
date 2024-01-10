@@ -34,6 +34,16 @@ export async function getUserId(params: any) {
   }
 }
 
+export async function getAllUsers() {
+  try {
+    connectTodatabase();
+    const users = await User.find();
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // live search user by name
 export async function searchUserByName(params: any) {
   try {

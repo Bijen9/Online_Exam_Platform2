@@ -1,4 +1,4 @@
-import { getMarkableanswer } from "@/lib/actions/question.action";
+import { getMarkableanswer, markWritten } from "@/lib/actions/question.action";
 
 import MarkWritten from "@/components/test/markWritten";
 import { IWanswer } from "@/database/wanswer.model";
@@ -8,16 +8,25 @@ const TeacherPage = async ({ question, testId, index }: any) => {
     QuestionId: question._id,
   });
 
+  if (allwrittenAnswer.length === 0) {
+    await markWritten({
+      QuestionId: question._id,
+      decision: false,
+    });
+  }
+
   return (
     <>
       <div
         className="card-wrapper p-9
-    sm:px-11 rounded-[10px] dark:text-white dark:shadow-gray-900"
+    sm:px-11 rounded-[10px] dark:text-white dark:shadow-gray-900 mt-4"
       >
-        <div>Question no.{index + 1}</div>
-        <div>&rarr; {question.question}</div>
-        <div> Correct answer for teachers refrence</div>
-        <div>&rarr; {question.correctAnswer}</div>
+        <div className="h3-bold">
+          Question no. {index + 1} &#41; {question.question}
+        </div>
+        <br />
+        <div> Correct answer : &rarr; {question.correctAnswer}</div>
+
         <br></br>
         <div> Students Answer :-</div>
         {allwrittenAnswer.map((answer: any, index: any) => (

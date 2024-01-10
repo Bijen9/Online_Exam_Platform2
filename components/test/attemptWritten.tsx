@@ -27,7 +27,9 @@ const AddsTrueFalse = ({ questionn, qno, userId }: any) => {
 
   const form = useForm<z.infer<typeof attendWrittenSchema>>({
     resolver: zodResolver(attendWrittenSchema),
-    defaultValues: {},
+    defaultValues: {
+      answer: " ",
+    },
   });
 
   async function onSubmit(values: z.infer<typeof attendWrittenSchema>) {
@@ -39,7 +41,7 @@ const AddsTrueFalse = ({ questionn, qno, userId }: any) => {
       await attendWritten({
         writtenId: question._id,
         userId: JSON.parse(userId),
-        answer: answer,
+        answer: answer ? answer : " ",
       });
       setIsSubmitting(false);
       setFinished(true);

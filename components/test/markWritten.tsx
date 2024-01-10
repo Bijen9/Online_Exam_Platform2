@@ -64,7 +64,9 @@ const MarkWritten = ({ studentAnswerStringified }: any) => {
             {/* one radio button on press answer value is true */}
             <div>
               <h4 className="h4 text-dark100_light900">
-                {studentAnswer.answer}
+                {studentAnswer?.answer
+                  ? studentAnswer.answer
+                  : "No answer from student."}
               </h4>
             </div>
             <FormField
