@@ -14,22 +14,32 @@ export default async function MarkTest() {
 
   return (
     <>
-      <div className="mt-10 flex w-full flex-col justify-between gap-6 sm:flex-column sm:item-center">
-        <h1 className="h1-bold text-dark100_light900">Mark Test</h1>
-        {tests!.map((test: any) => (
-          <Link href={`/teacher/mark-test/${test._id}`} key={test._id}>
-            <TestCard
-              name={test.name}
-              description={test.description}
-              startTime={test.startTime}
-              endTime={test.endTime}
-              status={test.status}
-              totalQuestion={test.totalQuestions}
-              createdAt={test.createdAt}
-            />
-          </Link>
-        ))}
+      <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:item-center">
+        <h1 className="h1-bold text-dark100_light900"> Mark Tests</h1>
       </div>
+
+      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:item-center">
+        <LocalSearchbar
+          route="/"
+          iconPosition="left"
+          imgSrc="/assests/icons/search.svg"
+          placeholder="Search for tests"
+          otherClasses="flex-1"
+        />
+      </div>
+      {tests!.map((test: any) => (
+        <Link href={`/teacher/mark-test/${test._id}`} key={test._id}>
+          <TestCard
+            name={test.name}
+            description={test.description}
+            startTime={test.startTime}
+            endTime={test.endTime}
+            status={test.status}
+            totalQuestion={test.totalQuestions}
+            createdAt={test.createdAt}
+          />
+        </Link>
+      ))}
     </>
   );
 }

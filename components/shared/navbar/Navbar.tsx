@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Theme from "./Theme";
-import GlobalSearch from "../search/GlobalSearch";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {
@@ -20,12 +19,10 @@ const Navbar = () => {
           height={23}
           alt="onlineExamPlatform_logo"
         />
-        <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-          Exam Platform <span className="text-primary-500">Online</span>
+        <p className="h2-bold font-spaceGrotesk text-dark500_light500 max-sm:hidden">
+          Online <span className="text-primary-500">Exam Platform</span>
         </p>
       </Link>
-
-      <GlobalSearch />
 
       <div className="flex-between gap-5 ">
         <Theme />

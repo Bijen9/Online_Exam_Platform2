@@ -21,27 +21,11 @@ export const sidebarLinksStudent: SidebarLink[] = [
     route: "/taketest",
     label: "Take Test",
   },
-  {
-    imgURL: "/assets/icons/user.svg",
-    route: "/profile",
-    label: "Profile",
-  },
 ];
 
 export const sidebarLinksTeacher: SidebarLink[] = [
   {
-    imgURL: "/assets/icons/home.svg",
-    route: "/teacher",
-    label: "Home ",
-  },
-
-  {
     imgURL: "/assets/icons/star.svg",
-    route: "/teacher/results",
-    label: "Results",
-  },
-  {
-    imgURL: "/assets/icons/tag.svg",
     route: "/teacher/mark-test",
     label: "Mark Tests",
   },
